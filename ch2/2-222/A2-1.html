@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMDb - Dreamworks</title>
+    <link rel="stylesheet" href="A2-1.css">
+
+</head>
+<body>
+    <header>
+        <img src="images/IMDB_Logo.svg" alt="The IMDb Logo">
+    </header>
+    <main>
+        <h1>Dreamworks Top Animated Films</h1>
+        <button id="addMovies" class="show">Add Movies</button>
+        <button id="addImages" class="show">Add Images</button>
+        <button id="addStyle" class="show">Add Style</button>
+        <button id="posterSize" class="show">Poster Size</button>
+        <button id="roundCorners" class="show">Round Corners</button>
+        <input type="button" id="removeButtons" value="Remove Buttons">
+        <ol id="movieList">
+
+        </ol>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+    
+            // A. addMovies
+            $("#addMovies").click(function () {
+                $("#movieList").append(
+                    '<li id="shrek1">Shrek</li>' +
+                    '<li id="dragon2">How to Train Your Dragon 2</li>' +
+                    '<li id="kungFu">Kung Fu Panda</li>' +
+                    '<li id="dragon1">How to Train Your Dragon</li>' +
+                    '<li id="shrek2">Shrek 2</li>'
+                );
+            });
+    
+            // B. addImages
+            $("#addImages").click(function () {
+                $("#shrek1").before('<img src="images/Shrek.jpg" alt="Shrek Poster">');
+                $("#dragon2").before('<img src="images/Dragon_2.jpg" alt="How to Train Your Dragon 2 Poster">');
+                $("#kungFu").before('<img src="images/KungFuPanda.jpg" alt="Kung Fu Panda Poster">');
+                $("#dragon1").before('<img src="images/Dragon.jpg" alt="How to Train Your Dragon Poster">');
+                $("#shrek2").before('<img src="images/Shrek_2.jpg" alt="Shrek 2 Poster">');
+            });
+    
+            // C. addStyle
+            $("#addStyle").click(function () {
+                $("#movieList").wrap('<div class="movieStyle"></div>');
+            });
+    
+            // D. posterSize
+            $("#posterSize").click(function () {
+                $("main img").css({
+                    "width": "150px",
+                    "border": "3px solid"
+                });
+            });
+    
+            // E. roundCorners
+            $("#roundCorners").click(function () {
+                $("main img").toggleClass("roundCorners");
+            });
+    
+            // F. removeButtons
+            $("#removeButtons").click(function () {
+                // 1. Show/hide all other buttons
+                $(".show").each(function () {
+                    if ($(this).hasClass("show")) {
+                        $(this).removeClass("show").addClass("hide");
+                    } else {
+                        $(this).removeClass("hide").addClass("show");
+                    }
+                });
+    
+                // 2. Update text on the "removeButtons" button
+                if ($(".show").length === 0) {
+                    $("#removeButtons").val("Add Buttons");
+                } else {
+                    $("#removeButtons").val("Remove Buttons");
+                }
+            });
+    
+        });
+    </script>
+</body>
+</html>
+
+
+
+<!-- ** You CANNOT change any of the HTML or CSS code already included in the downloadable files. You can only use jQuery to change the things specified.
+
+Add all jQuery code between the <script> tags at the bottom of the downloaded HTML file.
+
+Use jQuery to add a click event to the following buttons and add their corresponding manipulations:
+
+A. addMovies: Add the following list items (in the order provided) to the ordered list that has an id of "movieList" . 
+    Each list item should include the specified id:
+
+Shrek (id - "shrek1")
+How to Train Your Dragon 2 (id - "dragon2")
+Kung Fu Panda (id - "kungFu")
+How to Train Your Dragon (id - "dragon1")
+Shrek 2 (id - "shrek2")
+
+B. addImages: Add the following movie poster images before the specified element using the jQuery method that adds an element before other elements:
+
+Shrek.jpg before Shrek
+Dragon_2.jpg before How to Train Your Dragon 2
+KungFuPanda.jpg before Kung Fu Panda
+Dragon.jpg before How to Train You Dragon
+Shrek_2.jpg before Shrek 2
+
+C. addStyle	Use a jQuery method to surround the ordered list with a div that has the class of "movieStyle". This div is used to give style to the movie list. The CSS has already been created for you.
+
+D. posterSize: Use jQuery and a JSON object to add the following attributes to the images only found in the <main> section. This code will resize the images.
+
+width - 150 pixels
+border - 3 pixels and solid
+
+E. roundCorners: Use the jQuery method that allows you to turn a class on and off to add the class of "roundCorners" to the images only found in the <main> section. The "roundCorners" class has already been created for you.
+
+F. removeButtons: When you click this button it should:
+
+1. Show/hide all of the other buttons if they are hidden/visible.
+    1a. You MAY NOT use a toggle to accomplish this
+    1b. A class named "show" and a class named "hide" have been created for you. The buttons have already been assigned the "show" class
+HINTS:
+Use an IF statement and a jQuery method to check if the "show" or "hide" class is currently on each button
+If the class is currently set to "show", set it to "hide" and vice-versa
+
+2. Use a jQuery method to update the text on the "removeButtons" button
+    2a. If all of the buttons are showing, the "removeButtons" button should display the text, "Remove Buttons"
+    2b. If all of the buttons are not showing, the "removeButtons" button should display the text, "Add Buttons".  -->
+
+
+    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        // A. addMovies
+        $("#addMovies").click(function () {
+            $("#movieList").append(
+                '<li id="shrek1">Shrek</li>' +
+                '<li id="dragon2">How to Train Your Dragon 2</li>' +
+                '<li id="kungFu">Kung Fu Panda</li>' +
+                '<li id="dragon1">How to Train Your Dragon</li>' +
+                '<li id="shrek2">Shrek 2</li>'
+            );
+        });
+
+        // B. addImages
+        $("#addImages").click(function () {
+            $("#shrek1").before('<img src="images/Shrek.jpg" alt="Shrek Poster">');
+            $("#dragon2").before('<img src="images/Dragon_2.jpg" alt="How to Train Your Dragon 2 Poster">');
+            $("#kungFu").before('<img src="images/KungFuPanda.jpg" alt="Kung Fu Panda Poster">');
+            $("#dragon1").before('<img src="images/Dragon.jpg" alt="How to Train Your Dragon Poster">');
+            $("#shrek2").before('<img src="images/Shrek_2.jpg" alt="Shrek 2 Poster">');
+        });
+
+        // C. addStyle
+        $("#addStyle").click(function () {
+            $("#movieList").wrap('<div class="movieStyle"></div>');
+        });
+
+        // D. posterSize
+        $("#posterSize").click(function () {
+            $("main img").css({
+                "width": "150px",
+                "border": "3px solid"
+            });
+        });
+
+        // E. roundCorners
+        $("#roundCorners").click(function () {
+            $("main img").toggleClass("roundCorners");
+        });
+
+        // F. removeButtons
+        $("#removeButtons").click(function () {
+            // 1. Show/hide all other buttons
+            $(".show").each(function () {
+                if ($(this).hasClass("show")) {
+                    $(this).removeClass("show").addClass("hide");
+                } else {
+                    $(this).removeClass("hide").addClass("show");
+                }
+            });
+
+            // 2. Update text on the "removeButtons" button
+            if ($(".show").length === 0) {
+                $("#removeButtons").val("Add Buttons");
+            } else {
+                $("#removeButtons").val("Remove Buttons");
+            }
+        });
+
+    });
+</script> -->
