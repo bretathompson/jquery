@@ -1,0 +1,62 @@
+<!-- jQuery --> $ = jquery  # = get element by id
+jquery.com <head><script type="text/javascript" src="jquery"></script></head>
+
+$(document).ready()  or $(function( ) {} );
+<script type="text/javascript">
+    $(document).ready(function() {
+       // preform code here// $('#myContent').html('Hello World');
+    });
+</script>
+
+$('#myContent')
+
+<!-- slectors -->
+<div id="customersDiv" class="bright">
+    <span class="text">welcome john</span>
+</div>
+
+$(selectorExpression)
+$('p') selects all <p> elements for multiple items ('p,a,span' / 'table tr')
+
+$(document).ready(function () {
+ $('div').css('background-color', 'Green');  });
+ $('div').each(function() { alert($(this).html()); }); });
+ var coll = $('div, span'); alert(coll.length); });
+ $('div, span').css('propName', 'value'); });
+ 
+ css
+    $('p').css('color', 'red');
+    $('p').css('font-size', '35px');
+
+<!-- ID -->  $('#myID')
+$(document).ready(function () {
+    alert($('#TestDiv').html() );   });
+    alert($('#form1').html() );   });
+<!-- classname --> $('.myClass') anchor ('a.myClass') 
+$(document).ready(function () {
+    $('.BlueDiv').css('border', 2px solid red);   });
+<!-- attribute -->   $('a[title]')
+$(document).ready(function () {
+    alert($('div[title]').length);   });
+    var divs = $('div[title="Div Title"]').length); alert(divs.length); });
+    var inputs = $('input[type="text"]); alert(inputs.length); or inputs.css('background-color', 'yellow') });
+<!-- input --> $(':input') selects all inputs
+$(document).ready(function () {
+    var inputs =$(':input'); alert($(inputs[1].val());  });
+    $(':input').each(function() { var elem = $(this); alert(elem.val());  });  });
+<!-- contains --> $('div:contains("name")')  $('tr:odd,even') $('element:first-child') begins with $('input[value^='events']') ends with $('input[value$='events']')
+$(document).ready(function () {
+    alert($('div:contains("my div")').html());  });
+    $('tr').css('background-color', 'green');  });
+    $('tr:even').css('background-color', 'green');  });
+    alert($('div[title$="title"]').html());  });
+
+
+
+
+
+
+
+
+
+

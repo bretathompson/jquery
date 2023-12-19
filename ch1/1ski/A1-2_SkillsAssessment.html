@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hulk</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="jquery-3.7.0.min.js"></script>
+
+</head>
+<body>
+    <header>
+        <img src="images/Hulk_Head.png" alt="Hulk logo" id="logo">
+        <h1>Hulk Mania</h1>
+    </header>
+    <main>
+        <p>The Hulk first appeared as a comic book character in The Incredible Hulk #1, written by Stan Lee, penciled and co-plotted by Jack Kirby, and inked by Paul Reinman. Lee cited influence from Frankenstein and Dr. Jekyll and Mr. Hyde in the Hulk&apos;s creation, while Kirby recalled as inspiration the tale of a mother who rescues her child who is trapped beneath a car. Lee gave the Hulk's alter ego the alliterative name &quot;Bruce Banner&quot; because he found he had less difficulty remembering alliterative names.</p>
+            
+        <blockquote>The green man was initially grey, but coloring problems led to the creature being made green. Banner and his alter ego appeared in 1978 live&dash;action TV series, and in a 2003 film that received mixed reviews, with Marvel Studios regaining the film production rights for the character in February 2006.</blockquote>
+        <div id="merch">
+            Merch<br>
+            <img src="images/Hulk_Magazine2.png" alt="Hulk magazine" class="item">
+            <img src="images/Hulk_Shoe2.png" alt="Hulk shoe" class="item">
+        </div>
+        <div id="stickers">
+            Stickers<br>
+            <img src="images/Hulk.png" alt="Hulk">
+            <img src="images/HulkFist2.png" alt="Hulk fist">
+        </div>
+        <br>
+        <div id="quotes">
+            Quotes<br>
+            <ul>
+                <li data="favorite">Hulk Smash!</li>
+                <li>Next time, pick on someone your own size!</li>
+                <li>Quite yapping!</li>
+                <li>Puny god.</li>
+                <li>Hulk is not sorry, Hulk is Hulk</li>
+                <li>Winning!</li>
+                <li data="favorite">Time to break stuff!</li>
+                <li>Hulk does not smash... children.</li>
+                <li>Law cannot make Hulk leave! Hulk will smash stupid law!</li>
+                <li>Give me a real fight.</li>
+                <li>I know it's crazy. I'm wearing shirts now.</li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <p>Copyright &copy; 2023 Green Mania. All rights reserved.</p>
+    </footer>
+    <!-- 
+        1. Add the jQuery ready function to run the code as soon as the page's DOM becomes available
+
+        2. Use the following jQuery selectors to change the CSS to the specified values
+        +---------------------+----------------------------------------------------+---------------------------+
+        | SELECTOR TYPE       | WHAT TO SELECT                                     | CSS Properties/Values     |
+        +---------------------+----------------------------------------------------+---------------------------+
+        | tag name            | body                                               | background color / 7E9C33 |
+        | id                  | logo                                               | width / 80 pixels         |
+        | class               | item                                               | width / 200 pixels        |
+        | descendant selector | all images inside the 'stickers' div               | background color / yellow |
+        | attribute value     | any list items with a data attribute of 'favorite' | text color / yellow       |
+        | content (contains)  | any paragraphs that contain the word 'Hulk'        | text size / 25 pixels     |
+        +---------------------+----------------------------------------------------+---------------------------+
+    -->
+    <script>
+
+        $(document).ready(function() {
+            $('body').css('background-color', '#7E9C33');
+            $('#logo').css('width', '80px');
+            $('.item').css('width', '200px');
+       
+            $('#stickers img').css('background-color', 'yellow');
+            $('list[data="favorite"]').css('color', 'yellow');       
+            $('p:contains("Hulk")').css('font-size', '25px');
+
+        });
+        
+    </script>
+</body>
+</html>
