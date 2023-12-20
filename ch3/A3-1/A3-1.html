@@ -67,13 +67,22 @@
             $('#buttonClicks').toggle();
         });
 
-        $('#bunny').on({
-            mouseover: function(){
+        // $('#bunny').on({
+        //     mouseover: function(){
+        //         $(this).attr('src', 'mouse.png');
+        //     },
+        //     mouseout: function(){
+        //         $(this).attr('src', 'bunny.png');
+        //     }
+        // });
+
+        $('#bunny').on('mouseover', function(){
+            $('#bunny').mouseover(function(){
                 $(this).attr('src', 'mouse.png');
-            },
-            mouseout: function(){
+            });
+            $('#bunny').mouseout(function(){
                 $(this).attr('src', 'bunny.png');
-            }
+            });
         });
         
         $('#disableBunny').click(function(){
