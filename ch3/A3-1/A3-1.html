@@ -42,14 +42,48 @@
     <script>
        $(document).ready(function () {
 
-        $('.circle').css('curser','pointer');
+        $('.circle').css('cursor','pointer');
 
         $('#circle1').click(function() {
             alert("Circle1 has been clicked!");
         });
         
         $('#circle2').click(function() {
-            $().off('click');
+            $('.numberBoxes').toggleClass('pink'),
+            $('#total').toggleClass('pink');
+        });
+       
+        $('#circle3').dblclick(function(){
+            $('#buttonClicks').append('<h2>Button 3 was clicked!</h2>');
+        });
+
+        $('#circle4').hover(function(){
+            $(this).css({'border': '2px solid pink','width': '40px', 'height': '40px'});
+        }, function() {
+            $(this).css({'border': 'none','width': '35px', 'height': '35px'});
+        });
+
+        $('#circle4').click(function(){
+            $('#buttonClicks').toggle();
+        });
+
+        $('#bunny').on({
+            mouseover: function(){
+                $(this).attr('src', 'mouse.png');
+            },
+            mouseout: function(){
+                $(this).attr('src', 'bunny.png');
+            }
+        });
+        
+        $('#disableBunny').click(function(){
+            $('#bunny').off('mouseover mouseout');
+        });
+
+        $('.numberBoxes').change(function(){
+            var num1 = parseInt($('#num1').val());
+            var num2 = parseInt($('#num2').val());
+            $('#total').val(num1 + num2);
         });
 
        });
@@ -58,109 +92,3 @@
 </html>
 
 
-<!-- 
-TASK 3: Add a click event to the circle2 div that toggles the "pink" class on/off for all input boxes. Example:
-    When you click circle2, the "pink" class is added to all input boxes
-    When you click it again, the "pink" class is removed
-    When you click it again, the "pink" class is added
-
-TASK 4: Add a double click event to the circle3 div. When clicked, it will add the following code to the buttonClicks div: <h2>Button 3 was clicked!</h2>
-    Each click will add another <h2> to the bottom of the buttonClicks div
-
-TASK 5: Create a hover effect that makes the circle4 div become larger and gain a border when hovered over. When you are not hovering, it will return to normal
-A. Use the hover( ) method
-B. CSS to add on the hover:
-    B1. border - 2 pixel, solid, pink
-    B2. width - 40 pixels
-    B3. height - 40 pixels
-Hint: The CSS before task 5 is: No border and Width and height of 35 pixels
-
-TASK 6: Add a click event to the circle4 div. When clicked, the buttonClicks div will toggle between showing and hiding
-    NOTE: Use the toggle( ) method
-
-TASK 7: Add jQuery to the bunny image so that it changes to a mouse image when you hover over it
-A. Use the on( ) method
-B. Pass the mouseover and mouseout events to the on( ) method
-    B1. The mouseover will change the src attribute of the image to mouse.png
-    B2. The mouseout will change the src attribute back to bunny.png
-
-TASK 8: Add a jQuery event to the Disable Bunny button that will disable (remove) the mouseover and mouseout events created in the previous task
-
-TASK 9: The purpose of this task is to use the jQuery change( ) method to add the values of two text boxes together and display the result in a third text box.
-
-A. The provided document contains 3 input boxes:
-    A1. Number 1
-    A2. Number 2
-    A3. Total
-B. Add the value of the Number 1 box to the Number 2 box
-C. Display the total in the Total box
-    C1. The change( ) event will be used to display the total of the two boxes immediately, each time the Number 1 or Number 2 boxes are updated
-        HINT: A class named numberBoxes has been assigned to the Number 1 and Number 2 boxes. Add your change event here -->
-
-
-<script>
-    $(document).ready(function () {
-        // TASK 1
-        $(".circle").css("cursor", "pointer");
-
-        // TASK 2
-        $("#circle1").click(function () {
-            alert("Circle1 has been clicked!");
-        });
-
-        // TASK 3
-        $("#circle2").click(function () {
-            $(".numberBoxes").toggleClass("pink");
-        });
-
-        // TASK 4
-        $("#circle3").dblclick(function () {
-            $("#buttonClicks").append("<h2>Button 3 was clicked!</h2>");
-        });
-
-        // TASK 5
-        $("#circle4").hover(
-            function () {
-                $(this).css({
-                    "border": "2px solid pink",
-                    "width": "40px",
-                    "height": "40px"
-                });
-            },
-            function () {
-                $(this).css({
-                    "border": "none",
-                    "width": "35px",
-                    "height": "35px"
-                });
-            }
-        );
-
-        // TASK 6
-        $("#circle4").click(function () {
-            $("#buttonClicks").toggle();
-        });
-
-        // TASK 7
-        $("#bunny").on({
-            mouseover: function () {
-                $(this).attr("src", "mouse.png");
-            },
-            mouseout: function () {
-                $(this).attr("src", "bunny.png");
-            }
-        });
-
-        // TASK 8
-        $("#disableBunny").click(function () {
-            $("#bunny").off("mouseover mouseout");
-        });
-
-        // TASK 9
-        $(".numberBoxes").change(function () {
-            var num1 = parseFloat($("#num1").val()) || 0;
-            var num2 = parseFloat($("#num2").val()) || 0;
-            $("#total").val(num1 + num2);
-        });
-    });
-</script>
