@@ -25,12 +25,12 @@
         </ol>
     </main>
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function () {
     
-            $("#addMovies").click(function () {
-                $("#movieList").append(
+            $('#addMovies').click(function () {
+                $('#movieList').append(
                     '<li id="shrek1">Shrek</li>' +
                     '<li id="dragon2">How to Train Your Dragon 2</li>' +
                     '<li id="kungFu">Kung Fu Panda</li>' +
@@ -39,42 +39,42 @@
                 );
             });
     
-            $("#addImages").click(function () {
-                $("#shrek1").before('<img src="images/Shrek.jpg" alt="Shrek Poster">');
-                $("#dragon2").before('<img src="images/Dragon_2.jpg" alt="How to Train Your Dragon 2 Poster">');
-                $("#kungFu").before('<img src="images/KungFuPanda.jpg" alt="Kung Fu Panda Poster">');
-                $("#dragon1").before('<img src="images/Dragon.jpg" alt="How to Train Your Dragon Poster">');
-                $("#shrek2").before('<img src="images/Shrek_2.jpg" alt="Shrek 2 Poster">');
+            $('#addImages').click(function () {
+                $('#shrek1').before('<img src="images/Shrek.jpg">');
+                $('#dragon2').before('<img src="images/Dragon_2.jpg">');
+                $('#kungFu').before('<img src="images/KungFuPanda.jpg">');
+                $('#dragon1').before('<img src="images/Dragon.jpg">');
+                $('#shrek2').before('<img src="images/Shrek_2.jpg">');
             });
     
-            $("#addStyle").click(function () {
-                $("#movieList").wrap('<div class="movieStyle"></div>');
+            $('#addStyle').click(function () {
+                $('#movieList').wrap('<div class="movieStyle"></div>');
             });
     
-            $("#posterSize").click(function () {
-                $("main img").css({
-                    "width": "150px",
-                    "border": "3px solid"
+            $('#posterSize').click(function () {
+                $('main img').css({
+                    'width': '150px',
+                    'border': '3px solid'
                 });
             });
     
-            $("#roundCorners").click(function () {
-                $("main img").toggleClass("roundCorners");
+            $('#roundCorners').click(function () {
+                $('main img').toggleClass('roundCorners');
             });
     
-            $("#removeButtons").click(function () {
-                $(".show").each(function () {
-                    if ($(this).hasClass("show")) {
-                        $(this).removeClass("show").addClass("hide");
+            $('#removeButtons').click(function () {
+                $('button').each(function () {
+                    if ($(this).hasClass('show')) {
+                        $(this).removeClass('show').addClass('hide');
                     } else {
-                        $(this).removeClass("hide").addClass("show");
+                        $(this).removeClass('hide').addClass('show');
                     }
                 });
     
-                if ($(".show").length === 0) {
-                    $("#removeButtons").val("Add Buttons");
+                if ($('button').hasClass('hide')) {
+                    $('#removeButtons').val('Add Buttons');
                 } else {
-                    $("#removeButtons").val("Remove Buttons");
+                    $('#removeButtons').val('Remove Buttons');
                 }
             });
     
