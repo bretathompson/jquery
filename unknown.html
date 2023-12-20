@@ -136,7 +136,112 @@ alert to a click event
      });
 
 
-
+     ----------------------------------------------------------------------------------------
+     <!-- handling events -->
+     $(document).ready(function () {
+     
+     click    .click(handler(eventObject))
+             $('#myId').click(function() { alert("The elementMyID was clicked"); });
+      click in another function     $('#otherID').click(function() { $('#myID').click();  }); 
+      
+     <!-- handel select -->
+             $('#StateSelect').change(function() {
+                 $(this).val();
+                 });
+     
+     <!-- Mouse in/out -->
+             $('#MyDiv').mouseenter(function() { 
+                 Toggle(this);
+                 $(this).css('cursor', 'pointer'); 
+             }) 
+             .mouseleave(function() { 
+                 Toggle($(this)); 
+             })
+             .mouseup(function (e) {
+                 alert($(e.target).attr('id'));
+                 $(this).text('X: ' + e.pagex + 'y' +e.pageY);
+         }); 
+             function Toggle(div) {
+                 div.toggleClass('Highlight');
+             }
+     
+     <!-- ON / OFF --> .on(eventType,handler(eventObject))    .off(evnet)
+       on    $('#MyDIv').on('click',function() { //handle click event });
+       off   $('#test').click(handler);  then/or for off $('#test').off();
+     
+      on/off    $('#MyDIv').on('mouseenter mouseleave', function() { $(this).toggleClass('entered'); });     
+     
+     <!--live / delegate / on -->
+      live   $('.someClass').live('click', someFunction);
+      stop live  $('.someClass').die('click', someFunction);      
+     
+      delegate  $('#Divs').delegate('div', 'click', someFunction);
+     
+      on    $("#MyTable tbody").on("click", "tr", function(event){
+         alert('row was clicked');
+      });
+     
+      on with a map
+      $('#MyTable tr').on({ $(this).addClass('over'); 
+     }, mouseleave: function() {
+         $(this).removeClass('out');
+      } });
+     
+     <!-- hover -->  $(selector).hover(handlerIn, handlerOut)
+         $('#target').hover( function() { $(this).css('background-color', 'blue'); }
+             function() {  $(this).css('background-color', 'red');   });
+     
+     
+     
+     example:
+         $(document).ready(function() { 
+             WireEvents();
+          });
+     
+          function WireEvents() {  $('#SubmitButton').click(function() { 
+             var firstNameVal = $('#FirstNameTextBox').val();
+             var lastNameVal = $('#FirstNameTextBox').val();
+             $('#DivOutput').text( firstNameVal + '' + lastNameVal);  }); }
+     
+     handel select
+             $('.MyInput').change(function() {
+                 alert($(this).val()); $(this).addClass('Highlight');
+                 });
+     
+     on OFF
+         $('#MyDiv').on('mouseenter mouseleave mouseup', function(e) {
+             $(this).toggleClass('Highlight');
+             $(this).css('cursor', 'pointer');
+             if(e.type =='mouseup') {
+                 $(this).text('X: ' + e.pagex + 'y' +e.pageY);
+             }
+         });    
+      will keep it off   $('#MyDIv').off();
+     
+     on demo
+         var table = $('#customers tbody');
+         $('#addRow').on('click', function() {
+             tbody.append('<tr><td>Jane</td><td>Doe</td></tr>');
+         });
+     
+         tbody.on('click', 'td', function() {
+             alert($(this).text());
+         });
+     
+     hover
+              $('#MyTable tr).hover(function() { 
+     enter       $(this).css('background-color', 'gray');  
+               },  function() {
+     leave       $(this).css('background-color', 'black');
+              });
+     
+     toggle   $('#MyTable tr).toggle(function() { 
+                 $(this).css('background-color', 'gray');  
+               },  function() {
+                 $(this).css('background-color', 'black');
+               });
+     
+     ----------------------------------------------------------------------------------------
 
 
 
