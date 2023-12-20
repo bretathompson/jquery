@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+    <script src="jquery-3.7.0.min.js"></script>
+</head>
+<body>
+    <div>
+        <button id="addText">Add Text</button>
+        <button id="addImages">Add Images</button>
+        <button id="resizeImages">Resize Images</button>
+        <button id="addWrapper">Add Wrapper</button>
+        <button id="addBorder">Add Border</button>
+        <button id="removeBorder">Remove Border</button>
+    </div>
+    <br>
+    <div id="images"></div>
+    
+    <!--
+        Place all code between the <script> tags below
+
+        1. Add a jQuery click event to the 'Add Text' button. When clicked, have the button add the
+        following text elements inside of paragraph tags with the specified id's. Use a jQuery method to
+        place all paragraph tags inside the div with an id of 'images'.
+            +----------+----------+
+            | TEXT     | ID       |
+            +----------+----------+
+            | Cat      | cat      |
+            | Dragon   | dragon   |
+            | Elephant | elephant |
+            | Puppy    | puppy    |
+            +----------+----------+
+
+       2. Add a jQuery click event to the 'Add Images' button. When clicked, this button should add the corresponding
+        image (images folder) inside the paragraph tags in the first task. Use a jQuery method to add each image. The image
+        should be located before the matching text. For example, the cat.jpg image should display with the "Cat" text
+        next. The dragon.jpg image should display with the "Dragon" next. Etc. Include a <br> tag after each image. This way,
+        the image should be on top with the text below. When finished, the output should look something like this:
+            <div id="images">
+                <p id="cat">
+                    <img ...
+                    <br>
+                    Cat
+                </p>
+                ...
+            </div>
+
+        3. Add a jQuery click event to the 'Resize Images' button. When clicked, this button will resize the 
+        images to a smaller size. Use a jQuery method to add the class of 'imageWidth' to each image when the
+        button is clicked. The 'imageWidth' class has already been created for you in the CSS.
+
+        4. Add a jQuery click event to the 'Add Wrapper' button. When clicked, this button should add some styling to
+        the page by adding a background color and centering the items. Use a jQuery method to add a div with the id of 
+        'wrapper' around the entire 'images' div. When finished, the output should look like this:
+            <div id="wrapper">
+                <div id="images">
+                    ...
+                </div>
+            </div>
+        
+        5. Add a jQuery click event to the 'Add Border' button. When clicked, this button will add a border to each
+        image. Use a jQuery method to add the class of 'imageBorder' to each image. This class has already been 
+        created for you in the CSS.
+
+        6. Add a jQuery click event to the 'Remove Border' button. When clicked, this button will remove the border that
+        surrounds each image. Use a jQuery method to remove the class of 'imageBorder' from each image.
+    -->
+
+    <script src="jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).ready(function() {    
+
+        $('#addText').click(function () {
+                $('#images').append(
+                    '<li id="Cat">Cat</li>' +
+                    '<li id="Dragon">Dragon</li>' +
+                    '<li id="elephant">elephant</li>' +
+                    '<li id="Puppy">Puppy</li>'                  
+                );
+                textData.forEach(function(item) {
+                $('#images').append("<p id='" + item.id + "'>" + item.text + "</p>");
+            });
+        });
+
+
+         $("#addImages").click(function() {
+            var imagesData = [
+                { src: "images/cat.jpg", id: "cat" },
+                { src: "images/dragon.jpg", id: "dragon" },
+                { src: "images/elephant.jpg", id: "elephant" },
+                { src: "images/puppy.jpg", id: "puppy" }
+            ];
+
+            imagesData.forEach(function(item) {
+                $("#"+item.id).prepend("<img src='" + item.src + "'><br>");
+            });
+        });
+
+
+        $("#resizeImages").click(function() {
+            $("img").addClass("imageWidth");
+        });
+
+        $("#addWrapper").click(function() {
+            $("#images").wrap("<div id='wrapper'></div>");
+        });
+
+        $("#addBorder").click(function() {
+            $("img").addClass("imageBorder");
+        });
+
+        $("#removeBorder").click(function() {
+            $("img").removeClass("imageBorder");
+        });
+
+
+    });     
+    </script>
+
+</body>
+</html>
+

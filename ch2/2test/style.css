@@ -1,0 +1,13 @@
+.imageWidth {
+    width: 200px;
+}
+#wrapper {
+    text-align: center;
+    background-color: #eee;
+    width: 550px;
+    margin: 0 auto;
+    padding: 10px;
+}
+.imageBorder {
+    border: 5px solid #333;
+}
