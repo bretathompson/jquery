@@ -137,111 +137,220 @@ alert to a click event
 
 
      ----------------------------------------------------------------------------------------
-     <!-- handling events -->
+<!-- handling events -->
      $(document).ready(function () {
      
      click    .click(handler(eventObject))
              $('#myId').click(function() { alert("The elementMyID was clicked"); });
       click in another function     $('#otherID').click(function() { $('#myID').click();  }); 
       
-     <!-- handel select -->
-             $('#StateSelect').change(function() {
-                 $(this).val();
-                 });
+<!-- handel select -->
+        $('#StateSelect').change(function() {
+            $(this).val();
+        });
      
-     <!-- Mouse in/out -->
-             $('#MyDiv').mouseenter(function() { 
-                 Toggle(this);
-                 $(this).css('cursor', 'pointer'); 
-             }) 
-             .mouseleave(function() { 
-                 Toggle($(this)); 
-             })
-             .mouseup(function (e) {
-                 alert($(e.target).attr('id'));
-                 $(this).text('X: ' + e.pagex + 'y' +e.pageY);
-         }); 
-             function Toggle(div) {
-                 div.toggleClass('Highlight');
-             }
+<!-- Mouse in/out -->
+        $('#MyDiv').mouseenter(function() { 
+            Toggle(this);
+            $(this).css('cursor', 'pointer'); 
+        }) 
+        .mouseleave(function() { 
+            Toggle($(this)); 
+        })
+        .mouseup(function (e) {
+            alert($(e.target).attr('id'));
+            $(this).text('X: ' + e.pagex + 'y' +e.pageY);
+        }); 
+            function Toggle(div) {
+                div.toggleClass('Highlight');
+            }
      
-     <!-- ON / OFF --> .on(eventType,handler(eventObject))    .off(evnet)
-       on    $('#MyDIv').on('click',function() { //handle click event });
-       off   $('#test').click(handler);  then/or for off $('#test').off();
+<!-- ON / OFF --> .on(eventType,handler(eventObject))    .off(evnet)
+on    $('#MyDiv').on('click',function() { //handle click event });
+off   $('#test').click(handler);  then/or for off $('#test').off();
      
-      on/off    $('#MyDIv').on('mouseenter mouseleave', function() { $(this).toggleClass('entered'); });     
+on/off    $('#MyDiv').on('mouseenter mouseleave', function() { $(this).toggleClass('entered'); });     
      
-     <!--live / delegate / on -->
-      live   $('.someClass').live('click', someFunction);
-      stop live  $('.someClass').die('click', someFunction);      
+<!--live / delegate / on -->
+live   $('.someClass').live('click', someFunction);
+stop live  $('.someClass').die('click', someFunction);      
      
-      delegate  $('#Divs').delegate('div', 'click', someFunction);
+delegate  $('#Divs').delegate('div', 'click', someFunction);
      
-      on    $("#MyTable tbody").on("click", "tr", function(event){
-         alert('row was clicked');
-      });
+on    $("#MyTable tbody").on("click", "tr", function(event){
+    alert('row was clicked');
+    });
      
-      on with a map
-      $('#MyTable tr').on({ $(this).addClass('over'); 
-     }, mouseleave: function() {
-         $(this).removeClass('out');
-      } });
+on with a map
+    $('#MyTable tr').on({ $(this).addClass('over'); 
+    }, mouseleave: function() {
+        $(this).removeClass('out');
+    } });
      
-     <!-- hover -->  $(selector).hover(handlerIn, handlerOut)
-         $('#target').hover( function() { $(this).css('background-color', 'blue'); }
-             function() {  $(this).css('background-color', 'red');   });
+<!-- hover -->  $(selector).hover(handlerIn, handlerOut)
+    $('#target').hover( function() { $(this).css('background-color', 'blue'); }
+        function() {  $(this).css('background-color', 'red');   });
      
      
      
-     example:
-         $(document).ready(function() { 
-             WireEvents();
-          });
+example:
+    $(document).ready(function() { 
+        WireEvents();
+    });
      
-          function WireEvents() {  $('#SubmitButton').click(function() { 
-             var firstNameVal = $('#FirstNameTextBox').val();
-             var lastNameVal = $('#FirstNameTextBox').val();
-             $('#DivOutput').text( firstNameVal + '' + lastNameVal);  }); }
+function WireEvents() {  $('#SubmitButton').click(function() { 
+        var firstNameVal = $('#FirstNameTextBox').val();
+        var lastNameVal = $('#FirstNameTextBox').val();
+        $('#DivOutput').text( firstNameVal + '' + lastNameVal);  }); }
      
-     handel select
-             $('.MyInput').change(function() {
-                 alert($(this).val()); $(this).addClass('Highlight');
-                 });
+handel select
+        $('.MyInput').change(function() {
+            alert($(this).val()); $(this).addClass('Highlight');
+        });
      
-     on OFF
-         $('#MyDiv').on('mouseenter mouseleave mouseup', function(e) {
-             $(this).toggleClass('Highlight');
-             $(this).css('cursor', 'pointer');
-             if(e.type =='mouseup') {
-                 $(this).text('X: ' + e.pagex + 'y' +e.pageY);
-             }
-         });    
-      will keep it off   $('#MyDIv').off();
+on OFF
+    $('#MyDiv').on('mouseenter mouseleave mouseup', function(e) {
+        $(this).toggleClass('Highlight');
+        $(this).css('cursor', 'pointer');
+        if(e.type =='mouseup') {
+            $(this).text('X: ' + e.pagex + 'y' +e.pageY);
+        }
+    });    
+will keep it off   $('#MyDiv').off();
      
-     on demo
-         var table = $('#customers tbody');
-         $('#addRow').on('click', function() {
-             tbody.append('<tr><td>Jane</td><td>Doe</td></tr>');
-         });
+on demo
+    var table = $('#customers tbody');
+    $('#addRow').on('click', function() {
+        tbody.append('<tr><td>Jane</td><td>Doe</td></tr>');
+    });
      
-         tbody.on('click', 'td', function() {
-             alert($(this).text());
-         });
+    tbody.on('click', 'td', function() {
+        alert($(this).text());
+    });
      
-     hover
-              $('#MyTable tr).hover(function() { 
-     enter       $(this).css('background-color', 'gray');  
-               },  function() {
-     leave       $(this).css('background-color', 'black');
-              });
+hover   $('#MyTable tr).hover(function() { 
+
+enter   $(this).css('background-color', 'gray');  
+        },  function() {
+
+leave   $(this).css('background-color', 'black');
+        });
      
-     toggle   $('#MyTable tr).toggle(function() { 
-                 $(this).css('background-color', 'gray');  
-               },  function() {
-                 $(this).css('background-color', 'black');
-               });
+
+toggle   $('#MyTable tr).toggle(function() { 
+        $(this).css('background-color', 'gray');  
+        },  function() {
+        $(this).css('background-color', 'black');
+        });
      
      ----------------------------------------------------------------------------------------
+
+<!-- ajax --> 
+loads data from server   $(selector).load():
+raw data from server    $.get()   and  $.post():
+post & return json      $.getJSON():
+provides core functions     $.ajax():
+
+<!-- load --> $(selector).load(url,data,callback)  example  $('#MyDiv').load('HelpDetails.html #MainTOC');
+               $(document).ready(function() {
+                $('#helpButton').click(function() {
+                    $('#MyDiv').load('HelpDetails.html');
+                });
+               });
+
+<!-- get --> $.get(url,data,callback,datatype)
+               $.get('HelpDetails.html', function(data) {
+                $('#OutputDiv').html(data);
+               });
+
+<!-- get JSON--> $.getJSON(url,data,callback)
+               $.getJSON('CustomerJson.aspx', {id:1}, function(data) {
+                alert(data.FirstName + '' + data.LastName);
+               });
+
+<!-- post--> $.post(url,data,callback)  
+               $.post('GetCustomers.aspx', {PageSize:15}, function(data) {
+                $('#OutputDiv').html(data);
+               });
+
+<!-- ajax--> $.ajax({ url: '../CustomerService.svc/InsertCustomer',
+                data: customer,
+                datatype: 'json', 
+                success: function(data,status, hxr) {
+                alert('insert status: + '' + data.d.status + '\n' + data.d.message);
+               }, error: function(xhr, status, error) { alert('error occurred: ' + status);}
+});
+
+
+
+
+
+example:
+LOAD
+    $(document).ready(function() { 
+        $('#MyButton').click(function() {
+            $('#OutputDiv').load('..HelpDetails.html #SubTOC');
+        });      
+
+GET
+    $.get('../HelpDetails.html', function(data) {
+        $('#OutputDiv).html(data);
+    });
+
+    $.get('../CustomerJson.aspsx', {id:5} function(data) {
+        alert('ID: ' + data.ID + '' + data.FirstName + '' + data.LastName);
+    }, 'json' );
+
+getJSON
+    $('#MyButton').click(function() {
+        $.getJSON('../CustomerJson.aspx', {id:5}, function(data) {
+            alert('ID: ' + data.ID + '' + data.FirstName + '' + data.LastName);
+        });
+    });
+
+POST
+    $.post('../GetCustomers.aspx',{PageSize:15}, function(data) {
+        $('#OutputDiv').html(data);
+    });
+
+    $('#MyButton').click(function() {
+        $.post('../CustomerService.svc/GetCustomers', null, function(data) {
+         var cust = data.d[0];
+            $('#OutputDiv').html(cust.FirstName + '' +cust.LastName);
+        }, 'json');
+    });
+
+ajax    
+    $('#MyButton').click(function() {
+        var customer = 'cust=' +
+        JSON.stringify({
+            FirstName: $('#FirstNameTB').val(), LastName: $('#LastNameTB').val() });
+        });
+        $.ajax({
+            url:'../CustomerService.svc/InsertCustomer',
+            data: customer,
+            dataType: 'json',
+            success: function (data, status, xhr) {
+                $('#OutputDiv').html('Insert status: ' + data.d.Status + <br /> + data.d.message);
+            }, error: function(xhr, status, error) {
+                alert('Error occurred: ' + status);
+            }
+        })
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
