@@ -52,138 +52,88 @@ $(document).ready(function () {
     alert($('div[title$="title"]').html());  });
 
 
+<!-- DOM  -->
 
+<!-- each  -->
+ .each(function(index,element)) iterate through objects
+    $('div').each(function(index) { alert(index +'='+$(this).text());  });
 
+examples:  
+    $(document).ready(function () {         
+        var html = " ";
+        $('div.BlueDiv,div.RedDiv').each(function(index) { html += "<br />" + index + $(this).text(); }); var output = $('#OutputDiv'); output.html(html); });
 
+<!-- mod object properties  --> this.propertyName and .attr(attributeName, value)
+        $('div').each(function(i) { this.title = "MyIndex = "+i;  });
+ accessing attribute   var val = $('#customerDiv').attr('title');       
+     $('img').attr({  title: 'My Image Title', style:'border:2px solid black;'  });
 
+     $(document).ready(function () { 
+         $('div.BlueDiv,div.RedDiv').each(function(index) { this.title = "some title"; $(this).attr('title', 'some title 2');  }); 
+         $('div.BlueDiv,div.RedDiv').attr({ title:'some title 3', style: 'font-size:14pt; background-color:yellow;color:black;' });  });
+chaining   
+        $('div.BlueDiv,div.RedDiv').attr({  title:'some title 4' }).css('background-color','yellow').css('color','black').css('font-size','20pt');  });
 
+<!-- nodes  --> end .append(), appendTo(), beging prepend(), prependTo()  .remove()
+        $('<span>(office)</span>').appendTo('.officePhone');  OR  $('.officePhone').append('<span>(office)</span>');
+        $('<span>Phone:</span>').prependTo('.Phone');  OR  $('.Phone').prepend('<span>Phone:</span>');
 
+wrap    .wrap()  $('.state').wrap('<div class="US_state"/>');
+remove   .remove()  $('.phone,.location').remove();
 
+modify css styles  $('div').css({  'color': '#css', 'font-weight': 'bold' });
+        $('div.BlueDiv,div.RedDiv').attr({  title:'some title 5' })
+        .css({ 'background-color','purple','color':'white','font-size': '20pt'})
+        .text('changed color');  });         
 
+modify classes  .addClass(), .hasClass(), .removeClass(), .toggleClass()
+        addClass()    $('p').addClass('classOne');
+        hasClass()    $('p').hasClass('styleSpecific');
+        removeClass   $('p').removeClass('classOne');  REMOVE ALL  .removeClass()
+        toggleClass   $('#PhoneDetails').toggleClass('highlight');
 
+examples:  
+    $(document).ready(function () { 
+        var tcd = $('#tablecontainverDiv');
+        tcd.append('<span style="background-color: green">Appended Child 1</span>');
+        tcd.prepend('<span style="background-color: green">Appended Child 1</span>');
+    OR
+        $('<br /> <span style="background-color: green">Appended Child 1</span>').appendTo(tcd);
+        $('<span style="background-color: green">Prepended Child 1</span>').prependTo(tcd);  });
 
+    wrap
+        $('span.foo').wrap('<div class="RedDiv ParentWrapper" />');
 
-----------------------------------------------------------------------------------------
-<!-- handling events -->
-$(document).ready(function () {
+    remove
+        $('div.ParentWrapper').remvoe();
+        $(#LastNameTextBox').removeClass('highlight');
 
-click    .click(handler(eventObject))
-        $('#myId').click(function() { alert("The elementMyID was clicked"); });
- click in another function     $('#otherID').click(function() { $('#myID').click();  }); 
- 
-<!-- handel select -->
-        $('#StateSelect').change(function() {
-            $(this).val();
-            });
+    addClass    
+        $('input[type="text"]').addClass('highlight');
 
-<!-- Mouse in/out -->
-        $('#MyDiv').mouseenter(function() { 
-            Toggle(this);
-            $(this).css('cursor', 'pointer'); 
-        }) 
-        .mouseleave(function() { 
-            Toggle($(this)); 
-        })
-        .mouseup(function (e) {
-            alert($(e.target).attr('id'));
-            $(this).text('X: ' + e.pagex + 'y' +e.pageY);
-    }); 
-        function Toggle(div) {
-            div.toggleClass('Highlight');
-        }
+    hasClass
+        $('').hasClass('');
 
-<!-- ON / OFF --> .on(eventType,handler(eventObject))    .off(evnet)
-  on    $('#MyDIv').on('click',function() { //handle click event });
-  off   $('#test').click(handler);  then/or for off $('#test').off();
+    toggleClass
+        function Focus(tb) {
+        $('tb').toggleClass('highlight');  }
 
- on/off    $('#MyDIv').on('mouseenter mouseleave', function() { $(this).toggleClass('entered'); });     
+        function Blur(tb) {
+            $('tb').toggleClass('highlight');  }
 
-<!--live / delegate / on -->
- live   $('.someClass').live('click', someFunction);
- stop live  $('.someClass').die('click', someFunction);      
+<!-- click event  -->  $(selector).click( )
+     add button  $('button').click( )
+     paragraph   $('p').click( )
 
- delegate  $('#Divs').delegate('div', 'click', someFunction);
-
- on    $("#MyTable tbody").on("click", "tr", function(event){
-    alert('row was clicked');
- });
-
- on with a map
- $('#MyTable tr').on({ $(this).addClass('over'); 
-}, mouseleave: function() {
-    $(this).removeClass('out');
- } });
-
-<!-- hover -->  $(selector).hover(handlerIn, handlerOut)
-    $('#target').hover( function() { $(this).css('background-color', 'blue'); }
-        function() {  $(this).css('background-color', 'red');   });
-
-
-
-example:
-    $(document).ready(function() { 
-        WireEvents();
+example: attach function to a click event
+     $(selector).click(function() {
+        Code goes here...
      });
 
-     function WireEvents() {  $('#SubmitButton').click(function() { 
-        var firstNameVal = $('#FirstNameTextBox').val();
-        var lastNameVal = $('#FirstNameTextBox').val();
-        $('#DivOutput').text( firstNameVal + '' + lastNameVal);  }); }
-
-handel select
-        $('.MyInput').change(function() {
-            alert($(this).val()); $(this).addClass('Highlight');
-            });
-
-on OFF
-    $('#MyDiv').on('mouseenter mouseleave mouseup', function(e) {
-        $(this).toggleClass('Highlight');
-        $(this).css('cursor', 'pointer');
-        if(e.type =='mouseup') {
-            $(this).text('X: ' + e.pagex + 'y' +e.pageY);
-        }
-    });    
- will keep it off   $('#MyDIv').off();
-
-on demo
-    var table = $('#customers tbody');
-    $('#addRow').on('click', function() {
-        tbody.append('<tr><td>Jane</td><td>Doe</td></tr>');
-    });
-
-    tbody.on('click', 'td', function() {
-        alert($(this).text());
-    });
-
-hover
-         $('#MyTable tr).hover(function() { 
-enter       $(this).css('background-color', 'gray');  
-          },  function() {
-leave       $(this).css('background-color', 'black');
-         });
-
-toggle   $('#MyTable tr).toggle(function() { 
-            $(this).css('background-color', 'gray');  
-          },  function() {
-            $(this).css('background-color', 'black');
-          });
-
-----------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+alert to a click event
+     $('p').click(function() {
+        alert("The paragraph was clicked.");
+     });
 
 
 
