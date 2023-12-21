@@ -58,48 +58,38 @@
 
 <script>
     $(function() {
+        $('#frozen').hover(function() {
+            $(this).fadeOut('slow').fadeIn('fast');
+        });
+
+        $('nav a').hover(function() {
+                $(this).animate({fontSize: '80%'}); 
+            }, function() {
+                $(this).animate({fontSize: '100%'});
+        });
+
+        $('#fruity').click(function() {
+            $(this).animate({left: '150%'}, 500, function() {
+                $('#fruityCaption').text("All gone!").css('cursor', 'pointer');
+            });
+        }); 
         
+        $('#fruityCaption').click(function() {
+            $('#fruity').animate({ left: '0%' }, 500, function() {
+                $('#fruityCaption').text("Fruity Flavors").css('cursor', 'default');
+            });
+        });
+        
+        $('#icecream').click(function() {
+            $('#definition').slideToggle();
+        });
+
     });
 </script>
 
 
 
 <!-- 
-TASK 1: Add a hover event to the FrozenFruit.jpg image:
-A. When the user hovers over the image, it will fade out and then immediately fade back in
-
-TASK 2: Animate the navigation links (Types, Most Popular, Contact):
-A. When the mouse is over the link:
-    A1. The font size will change to 80%
-        HINT: If you have a property that consists of two words when using the animate method, you need to remove the hyphen and c
-        apitalize the first letter of the second word. Example: fontSize
-B. When the mouse leaves the link:
-    B1. The font size returns to 100%
-
-TASK 3: Add a click event to the FruityIceCream.jpg image:
-A. The following two ids have been created for you:
-    A1. fruity
-    A2. fruityCaption
-B. When the user clicks the image:
-    B1. The image will slide out of the screen
-    B2. Immediately after the image slides out, the text "Fruity Flavors" will change to "All gone!"
-    B3. When you mouse over the text "All gone!" the mouse cursor will change to a pointer finger
-
-Add a click event to the text "All gone!":
-
-C. When the user clicks the text:
-    C1. The FruityIceCream.jpg image will slide back into the screen
-    C2. The text "All gone!" will return to "Fruity Flavors"
-    C3. The mouse cursor will return to the default arrow
-
-TASK 4: Add a click event to the "What is Ice Cream" button:
-A. The following two ids have been created for you:
-    A1. icecream
-    A2. definition
-B. Use a slide toggle to do the following:
-    B1. When the user clicks the button the definition will slide in
-    B2. When the user clicks the button again, the definition will slide out
-
 TASK 5: Animate the header logo image (the image of the dogs with ice cream):
 A. When the mouse is over the image (mouseover):
     A1. The image will move from it's current location to a new location directly to the right of the original
@@ -146,12 +136,14 @@ B. When the user clicks the compositionButton button (A4-1.html):
                     });
                 });
         
-                // Click event for "All gone!"
+                // Click event for "All gone!"        
                 $('#fruityCaption').click(function() {
-                    $('#fruity').animate({ left: '0' }, 500);
-                    $(this).text('Fruity Flavors').css('cursor', 'default');
+                    $('#fruity').animate({ left: '0%' }, 500, function() {
+                    $('#fruityCaption').text("Fruity Flavors").css('cursor', 'pointer');
+                    });
                 });
-        
+
+
                 // TASK 4: Click event for "What is Ice Cream" button
                 $('#icecream').click(function() {
                     $('#definition').slideToggle();
