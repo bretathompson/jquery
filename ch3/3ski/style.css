@@ -1,0 +1,19 @@
+body {
+    background-color: #000;
+    color: #fff;
+}
+#wrapper {
+    width: 85%;
+    margin: 0 auto;
+}
+.inline {
+    display: inline-block;
+    text-align: center;
+}
+.emphasis {
+    outline: 10px solid #c53242;
+    outline-offset: -10px;
+}
+#peekABoo {
+    display: none;
+}

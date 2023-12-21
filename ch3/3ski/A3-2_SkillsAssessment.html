@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link href="style.css" rel="stylesheet">
+    <script src="jquery-3.7.0.min.js"></script>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="inline">
+            <img src="images/DarthRide.jpg" alt="Darth riding a chipmunk" id="darthChipmunk">
+            <p>Darth Chipmunk</p>
+        </div>
+        <div class="inline">
+            <img src="images/BikeChase2.jpg" alt="Darth bike chase" id="darthChase">
+            <p id="darthChaseText">Darth Chase</p>
+        </div>
+        <div class="inline">
+            <img src="images/WhatThe.jpg" alt="Buzz Lightyear with Storm Troopers" id="whatThe">
+            <p>What The?</p>
+        </div>
+        <div class="inline">
+            <img src="images/Chewie_Bomb.jpg" alt="Chewie takes on Storm Troppers" id="chewieBomb">
+            <p>Chewie Bomb</p>
+        </div>
+        <div class="inline" id="peekABoo">
+            <img src="images/PeekABoo.jpg" alt="Trooper under a key">
+            <p>Peek A Boo</p>
+        </div>
+    </div>
+    <!--
+		Add all code between the <script> tags below
+	
+        1. Use jQuery to select every element with the class of 'inline'. Add a jQuery method that makes the
+        mouse cursor turn into a pointer finger when the mouse is hovered over anything with the 'inline' 
+        class. 
+
+        2. Add a jQuery click event to the 'Darth Chipmunk' image. Use a jQuery method that toggles the
+        'emphasis' class on/off. Example:
+            - When you click the image, the 'emphasis' class is added
+            - When you click it again, the 'emphasis' classes is removed
+            - Etc.
+
+        3. Add a jQuery DOUBLE click event to the 'Darth Chase' image. Use a jQuery method that changes the 'Darth Chase' text
+        to bold.
+
+        4. Add a jQuery click event to the 'What The?' image. Use the toggle() method to show/hide the 'peekABoo' div when the
+        image is clicked
+       
+        5. Modify the Chewie Bomb image so that when the mouse is over it, the image changes to the 'BuildStationForFood.jpg'
+        image. When the mouse is no longer over the image, the image should return to the 'Chewie_TakeThat.jpg' image. Use
+        the attr() method to accomplish this.
+
+    -->
+    <script>
+        $(document).ready(function() {
+
+            $('.inline').css('cursor', 'pointer');
+
+            $('#darthChipmunk').click(function () {
+                $(this).toggleClass('emphasis');
+            });
+
+            $('#darthChase').dblclick(function() {
+                $('#darthChaseText').css('font-weight', 'bold')
+            });
+
+            $('#whatThe').click(function () {
+                $('#peekABoo').toggle();
+            });
+
+            $('#chewieBomb').hover(
+                function () {
+                    $(this).attr('src', 'images/BuildStationForFood.jpg');
+                }, function () {
+                    $(this).attr('src', 'images/Chewie_TakeThat.jpg'); // there is no Chewie_TakeThat in the image folder//
+                }
+            );
+
+        });
+        
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
