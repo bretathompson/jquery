@@ -76,53 +76,7 @@
 
 
 
-<!-- Task 1: Add the Quantity Number Input to the Current Cart:
-The HTML number input (<input type="number">) is a good choice to use to help a user add the same item multiple times to the shopping cart.  
-We already have a number input on the cart.html page, but it would be better to also include one on the shop.html sidebar cart. In this task,
-we will add the needed HTML to include a number input on the shop.html page. We will also update the number input on the cart.html page to 
-include a class and an id, both of which will be used to update the cart array and local storage in a future task.
 
-1. The displayCart( ) function in the shop.js file is used to display the shopping cart products in the sidebar of the shop.html page. 
-This is where we want to include our number input. We will place our input inside the empty tableCell div that is located inside the 
-second div with the class of tableRow. Inside the displayCart function, create a new <input> tag. Place the input tag inside the first 
-tableCell div that is inside the second tableRow div. The correct tableCell div is currently empty and has a class of tableCell and 
-borderBottom (<div class="tableCell borderBottom"></div>). Create the new <input> tag and add the following attributes and values:
-    A. Include a class named 'quantityNumberInput'. This class will be used later to select the input element and update the value of the number field
-    B. Include an id. Assign it the value of the id of the current cart item that the forEach loop is iterating over. The id should look like this: id="${cartItem.id}". This id will be used in another task to match the id of the current iterated object to the id of the product in the cart array
-    C. Assign the input the type of 'number'
-    D. The value of the input will be assigned to the quantity of the current iterated object. For example: ${cartItem.quantity}. This way the quantity will always match the current quantity in the local storage and cart array
-    E. Set a minimum value of '1' (one). This will stop the user from adding a negative number of items to the cart
-    F. Set a maximum value of '5'. In our shopping cart, the users will not be able to order more than 5 units of the same product
-2. We want the number input on the cart.html page to function the same way as it does on the shop.html page. The two <input> tags should be identical. The <input> tag on the cart.html page is missing the class and id. The <input> tag can be found on the cart.js page inside the displayCartProducts function. The tag is found within the div with the class of cartQuantity. Modify the <input> tag to include a class named 'quantityNumberInput' and an id set to the value of the currently iterated item's id. For example: ${cartItem.id}
-
-Add some products to the cart by clicking the Add to Cart button. Each product on the shop.html page should now have a number input that 
-can be used to change the quantity of the product from 1 to 5. Depending on the version of your browser, you may or may not see the up and 
-down arrows until you hover over or click inside the number input. -->
-
-<!-- Inside the displayCart function in shop.js -->
-cart.forEach(cartItem => {
-    // Existing code...
-
-    // Add the following code inside the second tableRow div
-    tableRow += `
-        <div class="tableRow">
-            <!-- Other cells... -->
-            <div class="tableCell borderBottom">
-                <input
-                    class="quantityNumberInput"
-                    id="${cartItem.id}"
-                    type="number"
-                    value="${cartItem.quantity}"
-                    min="1"
-                    max="5"
-                />
-            </div>
-            <!-- Other cells... -->
-        </div>
-    `;
-
-    // Other code...
-});
 
 
 

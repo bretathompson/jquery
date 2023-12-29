@@ -31,10 +31,12 @@ function saveToLocalStorage() {
         addButton.addEventListener("click", function(event) {
             event.preventDefault();
 
-
-            let selectedProduct = products.find( (product) => product.id == cartButton[i].id);
-
-            cart.push(selectedProduct);
+            let cartItemSearch = cart.find((cartItem) => cartItem.id == selectedProduct.id);
+            if (cartItemSearch) {
+                cartItemSearch.quantity++;
+            } else{
+                cart.push({selectedProduct, quantity: 1 });
+            };
 
             localStorage.setItem("CART", JSON.stringify(cart));
 
@@ -60,11 +62,15 @@ function displayCart() {
                 </div>
             </div>
             <div class="tableRow">            
-                <div class="tableCell borderBottom"></div> 
+            <div class="tableCell borderBottom">
+                <input class='quantityNumberInput' id="${cartItem.id}" type='number' value='${cartItem.quantity}'
+                minimum='1' maximum='5'/>                
+            </div> 
                 <a href="#" class="tableCell borderBottom removeLink" id="${cartItem.id}">Remove</a>
             </div>`;
     });
     removeFromCart();
+    updateQuantity();
 
 }
 displayCart();
@@ -77,6 +83,31 @@ checkoutButton.addEventListener('click', () => {
 });
 
 
+
+
+// Task 1: Add the Quantity Number Input to the Current Cart:
+// 1. The displayCart( ) function in the shop.js file is used to display the shopping cart products in the sidebar of the shop.html page. 
+// This is where we want to include our number input. We will place our input inside the empty tableCell div that is located inside the 
+// second div with the class of tableRow. Inside the displayCart function, create a new <input> tag. Place the input tag inside the first 
+// tableCell div that is inside the second tableRow div. The correct tableCell div is currently empty and has a class of tableCell and 
+// borderBottom (<div class="tableCell borderBottom"></div>). Create the new <input> tag and add the following attributes and values:
+//     A. Include a class named 'quantityNumberInput'. This class will be used later to select the input element and update the value of the number field
+//     B. Include an id. Assign it the value of the id of the current cart item that the forEach loop is iterating over. The id should look like 
+//     this: id="${cartItem.id}". This id will be used in another task to match the id of the current iterated object to the id of the product in 
+//     the cart array
+//     C. Assign the input the type of 'number'
+//     D. The value of the input will be assigned to the quantity of the current iterated object. For example: ${cartItem.quantity}. This way the 
+//     quantity will always match the current quantity in the local storage and cart array
+//     E. Set a minimum value of '1' (one). This will stop the user from adding a negative number of items to the cart
+//     F. Set a maximum value of '5'. In our shopping cart, the users will not be able to order more than 5 units of the same product
+// 2. We want the number input on the cart.html page to function the same way as it does on the shop.html page. The two <input> tags should be 
+// identical. The <input> tag on the cart.html page is missing the class and id. The <input> tag can be found on the cart.js page inside the 
+// displayCartProducts function. The tag is found within the div with the class of cartQuantity. Modify the <input> tag to include a class named 
+// 'quantityNumberInput' and an id set to the value of the currently iterated item's id. For example: ${cartItem.id}
+
+// Add some products to the cart by clicking the Add to Cart button. Each product on the shop.html page should now have a number input that 
+// can be used to change the quantity of the product from 1 to 5. Depending on the version of your browser, you may or may not see the up and 
+// down arrows until you hover over or click inside the number input.
 
 
 // Task 2: Increase Quantity with Add to Cart Button:
@@ -104,37 +135,3 @@ checkoutButton.addEventListener('click', () => {
 // Each time you press the Add to Cart button on a product card that is already inside the cart, the quantity of that product should now increase. 
 // If you click on a product that is not currently inside the cart, the entire product will be added to the cart with a quantity of 1.
 
-
-
-// Inside the saveToLocalStorage function in shop.js
-function saveToLocalStorage() {
-    let cartButton = document.getElementsByClassName("cartButton");
-
-    for (let i = 0; i < cartButton.length; i++) {
-        let addButton = cartButton[i];
-
-        addButton.addEventListener("click", function (event) {
-            event.preventDefault();
-
-            // Find the selected product in the products array
-            let selectedProduct = products.find((product) => product.id == cartButton[i].id);
-
-            // Find the selected product in the cart
-            let cartItemSearch = cart.find((cartItem) => cartItem.id == selectedProduct.id);
-
-            // Check if the item is already in the cart
-            if (cartItemSearch) {
-                // If the item is in the cart, increment the quantity
-                cartItemSearch.quantity++;
-            } else {
-                // If the item is not in the cart, add it with quantity 1
-                cart.push({ ...selectedProduct, quantity: 1 });
-            }
-
-            // Update the cart and localStorage
-            displayCart();
-            saveCartToLocalStorage();
-        });
-    }
-}
-saveToLocalStorage();
