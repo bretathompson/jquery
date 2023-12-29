@@ -1,3 +1,5 @@
+
+
 const cardContainer = document.querySelector('#cardContainer');
 function addProducts() {
     let cardInfo = '';
@@ -76,87 +78,6 @@ checkoutButton.addEventListener('click', () => {
 
 
 
-// Task 1: Add the Quantity Number Input to the Current Cart:
-// The HTML number input (<input type="number">) is a good choice to use to help a user add the same item multiple times to the shopping cart.  
-// We already have a number input on the cart.html page, but it would be better to also include one on the shop.html sidebar cart. In this task,
-// we will add the needed HTML to include a number input on the shop.html page. We will also update the number input on the cart.html page to 
-// include a class and an id, both of which will be used to update the cart array and local storage in a future task.
-
-// 1. The displayCart( ) function in the shop.js file is used to display the shopping cart products in the sidebar of the shop.html page. 
-// This is where we want to include our number input. We will place our input inside the empty tableCell div that is located inside the 
-// second div with the class of tableRow. Inside the displayCart function, create a new <input> tag. Place the input tag inside the first 
-// tableCell div that is inside the second tableRow div. The correct tableCell div is currently empty and has a class of tableCell and 
-// borderBottom (<div class="tableCell borderBottom"></div>). Create the new <input> tag and add the following attributes and values:
-//     A. Include a class named 'quantityNumberInput'. This class will be used later to select the input element and update the value of the number field
-//     B. Include an id. Assign it the value of the id of the current cart item that the forEach loop is iterating over. The id should look like this: id="${cartItem.id}". This id will be used in another task to match the id of the current iterated object to the id of the product in the cart array
-//     C. Assign the input the type of 'number'
-//     D. The value of the input will be assigned to the quantity of the current iterated object. For example: ${cartItem.quantity}. This way the quantity will always match the current quantity in the local storage and cart array
-//     E. Set a minimum value of '1' (one). This will stop the user from adding a negative number of items to the cart
-//     F. Set a maximum value of '5'. In our shopping cart, the users will not be able to order more than 5 units of the same product
-// 2. We want the number input on the cart.html page to function the same way as it does on the shop.html page. The two <input> tags should be identical. The <input> tag on the cart.html page is missing the class and id. The <input> tag can be found on the cart.js page inside the displayCartProducts function. The tag is found within the div with the class of cartQuantity. Modify the <input> tag to include a class named 'quantityNumberInput' and an id set to the value of the currently iterated item's id. For example: ${cartItem.id}
-
-// Add some products to the cart by clicking the Add to Cart button. Each product on the shop.html page should now have a number input that 
-// can be used to change the quantity of the product from 1 to 5. Depending on the version of your browser, you may or may not see the up and 
-// down arrows until you hover over or click inside the number input.
-
-// Inside the displayCart function in shop.js
-
-function displayCart() {
-    clearStorageAndCart();
-    sideBarContainer.innerHTML = "";
-
-    cart.forEach((cartItem) => {
-        sideBarContainer.innerHTML += `
-            <div class="tableRow">
-                <div class="tableCell">
-                    ${cartItem.name} 
-                </div>
-                <div class="tableCell">
-                    &dollar; ${cartItem.price}
-                </div>
-                <div class="tableCell">
-                    <input 
-                        type="number" 
-                        class="quantityNumberInput" 
-                        id="${cartItem.id}" 
-                        value="${cartItem.quantity}" 
-                        min="1" 
-                        max="5"
-                    />
-                </div>
-            </div>
-            <div class="tableRow">            
-                <div class="tableCell borderBottom"></div> 
-                <a href="#" class="tableCell borderBottom removeLink" id="${cartItem.id}">Remove</a>
-            </div>`;
-    });
-
-    removeFromCart();
-}
-
-// Inside the displayCartProducts function in cart.js
-
-function displayCartProducts() {
-    // ... (existing code)
-
-    // Create a new input element for quantity
-    const quantityInput = document.createElement('input');
-    quantityInput.setAttribute('class', 'quantityNumberInput');
-    quantityInput.setAttribute('id', `${cartItem.id}`);
-    quantityInput.setAttribute('type', 'number');
-    quantityInput.setAttribute('value', cartItem.quantity);
-    quantityInput.setAttribute('min', '1');
-    quantityInput.setAttribute('max', '5');
-
-    // Locate the div with the class of cartQuantity and append the quantity input
-    const cartQuantityDiv = document.querySelector('.cartQuantity');
-    cartQuantityDiv.appendChild(quantityInput);
-
-    // ... (existing code)
-}
-
-
-
 
 // Task 2: Increase Quantity with Add to Cart Button:
 // Currently, if you click the Add to Cart button multiple times on the same product on the shop.html page, it will add the product 
@@ -183,35 +104,37 @@ function displayCartProducts() {
 // Each time you press the Add to Cart button on a product card that is already inside the cart, the quantity of that product should now increase. 
 // If you click on a product that is not currently inside the cart, the entire product will be added to the cart with a quantity of 1.
 
-// Inside the saveToLocalStorage function in shop.js
 
+
+// Inside the saveToLocalStorage function in shop.js
 function saveToLocalStorage() {
     let cartButton = document.getElementsByClassName("cartButton");
 
     for (let i = 0; i < cartButton.length; i++) {
         let addButton = cartButton[i];
 
-        addButton.addEventListener("click", function(event) {
+        addButton.addEventListener("click", function (event) {
             event.preventDefault();
 
+            // Find the selected product in the products array
             let selectedProduct = products.find((product) => product.id == cartButton[i].id);
 
-            // Step 1: Create a new variable 'cartItemSearch'
+            // Find the selected product in the cart
             let cartItemSearch = cart.find((cartItem) => cartItem.id == selectedProduct.id);
 
-            // Step 3: Add an IF statement to check if the item is already in the cart
+            // Check if the item is already in the cart
             if (cartItemSearch) {
-                // Step 4: Increment the quantity if the item is already in the cart
+                // If the item is in the cart, increment the quantity
                 cartItemSearch.quantity++;
             } else {
-                // Step 5: Move the code to push the entire item to the cart inside the ELSE statement
-                cart.push(selectedProduct);
+                // If the item is not in the cart, add it with quantity 1
+                cart.push({ ...selectedProduct, quantity: 1 });
             }
 
-            localStorage.setItem("CART", JSON.stringify(cart));
-
+            // Update the cart and localStorage
             displayCart();
+            saveCartToLocalStorage();
         });
     }
 }
-
+saveToLocalStorage();

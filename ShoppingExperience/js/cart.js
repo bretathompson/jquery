@@ -12,22 +12,22 @@ function displayCartProducts() {
             cartCardContainer.innerHTML += `
                 <div class="cartCard">
                     <div class="cartCardFlex">
-                        <img src="${cartItem.image}" alt="${cartItem.name}">
+                        <img src="${cartItem.image}" alt="${cartItem.description}">
                         <p class="cartTitle">${cartItem.name}</p>
                         <p class="cartDescription">${cartItem.description}</p>
                         <div class="cartQuantity">
                             <input type="number" value="${cartItem.quantity}" min="1" max="5">
                         </div>
-                        <p class="cartPrice">$${cartItem.price}</p>
+                        <p class="cartPrice">&dollar;${cartItem.price}</p>
                     </div>
                     <p class="textAlignRight removeMargins"><a href="#" class="removeLink" id="${cartItem.id}">Remove</a></p>
                 </div>
             `;
+            removeFromCart();
         });
 
-        removeFromCart();
     } else {
-        cartCardContainer.innerHTML = '<p id="emptyCart" style="font-style: italic; margin: 0;">The cart is empty</p>';
+        cartCardContainer.innerHTML = '<p id="emptyCart">The cart is empty</p>';
     }
 }
 displayCartProducts();
@@ -54,7 +54,6 @@ function calculateOrderSummary() {
     tax = (subtotal + shipping) * 0.061;
     total = subtotal + shipping + tax;
 }
-calculateOrderSummary();
 
 
 
@@ -98,6 +97,32 @@ function displayOrderSummary() {
 displayOrderSummary();
 
 
+
+
+
+
+
+function calculateOrderSummary() {
+    subtotal = 0;
+    shipping = 0;
+    tax = 0;
+    total = 0;
+
+    clearStorageAndCart();
+
+    cart.forEach((cartItem) => {
+        // Modify the following line to multiply the quantity by the item price
+        subtotal += cartItem.price * cartItem.quantity;
+
+        // Modify the following line to multiply the shipping cost by the item quantity
+        shipping += 1 * cartItem.quantity;
+    });
+
+    tax = (subtotal + shipping) * 0.061;
+    total = subtotal + shipping + tax;
+}
+
+
 // Task 4: Update Order Summary to Include the Quantity:
 // We have one last thing we need to do with the quantity. We need to add the quantity to the Order Summary on the cart.html page so that the total amount 
 //     due is correct.
@@ -118,24 +143,26 @@ displayOrderSummary();
 
 
 
-// Inside the calculateOrderSummary function in cart.js
+<!-- Inside the displayCartProducts function in cart.js -->
+cart.forEach(cartItem => {
+    // Existing code...
 
-function calculateOrderSummary() {
-    subtotal = 0;
-    shipping = 0;
-    tax = 0;
-    total = 0;
+    // Modify the following line to include class and id attributes
+    cartContent += `
+        <!-- Other elements... -->
+        <div class="cartQuantity">
+            <input
+                class="quantityNumberInput"
+                id="${cartItem.id}"
+                type="number"
+                value="${cartItem.quantity}"
+                min="1"
+                max="5"
+            />
+        </div>
+        <!-- Other elements... -->
+    `;
 
-    clearStorageAndCart();
-
-    cart.forEach((cartItem) => {
-        // 1. Modify the subtotal statement to multiply the cart item's price by the cart item's quantity.
-        subtotal += cartItem.price * cartItem.quantity;
-        // 2. Modify the shipping statement to multiply the $1 shipping cost by the cart item's quantity.
-        shipping += 1 * cartItem.quantity;
-    });
-
-    tax = (subtotal + shipping) * 0.061;
-    total = subtotal + shipping + tax;
-}
+    // Other code...
+});
 

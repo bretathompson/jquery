@@ -43,14 +43,11 @@ function removeFromCart() {
 
             if (typeof displayCartProducts === "function") {
                 displayCartProducts();
+                displayOrderSummary();
             }
 
             if (cart.length == 0) {
                 localStorage.clear();
-            }
-
-            if (typeof displayOrderSummary === "function") {
-                displayOrderSummary();
             }
 
         });
@@ -72,15 +69,13 @@ function clearCart() {
 
         if (typeof displayCartProducts === "function") {
             displayCartProducts( );
-        }
-
-        if (typeof displayOrderSummary === "function") {
             displayOrderSummary();
         }
 
     });
 }
 clearCart();
+
 
 
 
@@ -136,38 +131,36 @@ clearCart();
 
 
 
+
 // Inside the app.js file
 
-// ...
-
-// 1. Create a new function named 'updateQuantity'.
+// Task 3: Create the Update Quantity Function
 function updateQuantity() {
-    // 2. In order to manipulate the quantity number inputs, grab them from the HTML.
-    let quantityNumberInput = document.getElementsByClassName('quantityNumberInput');
+    // Step 2: Grab the quantity number inputs
+    let quantityNumberInputs = document.getElementsByClassName('quantityNumberInput');
 
-    // 3. Loop through the quantity number inputs.
-    for (let i = 0; i < quantityNumberInput.length; i++) {
-        // 4. Add a 'change' event to each input.
-        quantityNumberInput[i].addEventListener('change', (event) => {
-            // 5. Arrow function with a parameter named 'event'.
-            event.preventDefault();
+    // Step 3: Loop through the quantity number inputs
+    for (let i = 0; i < quantityNumberInputs.length; i++) {
+        // Step 4: Add a 'change' event listener to each input
+        quantityNumberInputs[i].addEventListener('change', (event) => {
+            // Step 5: Arrow function with parameter 'event'
 
-            // 6. Limit the quantity value to 5.
-            let quantityChanged = quantityNumberInput[i].value;
+            // Step 6: Prevent the value from going higher than 5
+            let quantityChanged = quantityNumberInputs[i].value;
             if (quantityChanged > 5) {
                 quantityChanged = 5;
             }
 
-            // 7. Find the selected product in the cart array.
+            // Step 7: Find the selected product in the cart
             let itemToChange = cart.find((item) => item.id == event.target.id);
 
-            // 8. Update the quantity of the item.
+            // Step 8: Update the quantity of the item
             itemToChange.quantity = +quantityChanged;
 
-            // 9. Update the local storage with the cart array.
+            // Step 9: Update local storage with the cart array
             localStorage.setItem('CART', JSON.stringify(cart));
 
-            // 10. Call the displayOrderSummary function if it exists.
+            // Step 10: Call the displayOrderSummary function if it exists
             if (typeof displayOrderSummary == 'function') {
                 displayOrderSummary();
             }
@@ -175,14 +168,7 @@ function updateQuantity() {
     }
 }
 
-// 11. Call the updateQuantity function where needed.
+// Step 11: Call the updateQuantity function
+updateQuantity();
 
-// ...
 
-// Example: Calling updateQuantity in displayOrderSummary function on cart.js
-function displayOrderSummary() {
-    // Call the updateQuantity function at the top
-    updateQuantity();
-
-    // ... (existing code)
-}
