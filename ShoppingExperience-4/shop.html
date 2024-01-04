@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link href="style.css" rel="stylesheet">
+    <title>Shop - Kevin's Knick Knacks</title>
+    <script src="jquery-3.6.1.min"></script>
+</head>
+
+<body>
+    <header> 
+
+        <a href="index.html"><img src="images/KevinsKnickKnacksLogo_037DBE.png" alt="logo"></a>
+
+        <nav>
+            <div id="links">       
+                <a href="index.html">HOME</a>
+                <a href="shop.html">SHOP</a>
+                <a href="cart.html">CART</a>        
+            </div>
+        </nav>
+
+    </header>  
+ 
+
+  <main>
+    <aside>
+        <div id="sideBarHeading">
+            CART
+            </div>
+
+        <div id="sideBarContainer"> 
+        </div>
+
+        <div id="cartButtons">
+            <button id="clearCartButton" type="button">Clear Cart</button>
+            <button id="checkoutButton" type="button">Checkout</button>
+        </div>
+        
+    </aside>
+
+    <div id="mainContentContainer">
+        <div id="cardContainer">            
+        </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div id="socialMediaLinks">
+        <a href="#"><img src="images/facebook.png" alt="facebook"></a>
+        <a href="#"><img src="images/instagram.png" alt="instagram"></a>
+        <a href="#"><img src="images/twitter.png" alt="twitter"></a>
+        <a href="#"><img src="images/linkedin.png" alt="linkedIn"></a>
+    </div>
+
+    <div id="footerNav">
+        <a href="cart.html">CART</a>
+        <a href="shop.html">SHOP</a>
+        <a href="index.html">HOME</a>
+    </div>
+
+    <div id="copyright">
+        &copy; Otech Web Programming
+    </div>
+
+  </footer>
+
+  <script type="text/javascript" src="js/products.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/shop.js"></script>
+</body>
+</html>    
+
+
+
+<!-- Task 1: Add the 'Previous' and 'Next' Buttons: What is pagination? Pagination is the process of breaking a long page of information up into 
+    smaller sections (pages) so the information can be more easily digestible. In other words, it's taking a long web page and breaking it 
+    up to display on smaller pages. Most often pagination is used with next and previous button to navigate between pages. The goal of this 
+    task is to add a next and previous button to the shop.html page that can be used later to paginate the available products. 
+1. In order to switch between result pages, we need to include some buttons. We need to create a next button that will take us further into 
+    the result set, and we need to create a previous button to take us to a previous result set. We are only paginating the products on the 
+    shop.html page so we will include the buttons here. Create two button tags directly below the div with an id of cardContainer. Give the 
+    buttons the following properties:
+    A. Button 1 -> Give it a class named 'previous'. Inside the button tags include the text '&lt;&lt; Previous'. The &lt; HTML entity creates 
+        a lesser than symbol
+    B. Button 2 -> Give it a class named 'next'. Inside the button tags include the text 'Next &gt;&gt;'. The &gt; HTML entity creates a greater 
+        than symbol
+2. We have many buttons throughout our site so we need to distinguish these buttons from them. Create a div with an id of 'paginateButtons' 
+    that surrounds the buttons. This will be used in a future task to style the buttons. -->
+
+
+
+<!-- Task 2: Style the Previous and Next Buttons: The previous and next buttons are looking good but the default styling doesn't match our site. 
+    Let's style them so they fit in.
+1. Let's start by adding the same styling to our buttons as the Clear Cart buttons. The Clear Cart buttons are currently styled using two 
+    CSS style rules. The first is: #cartButtons button. The second is: #cartButtons #clearCartButton. We can utilize these styles to get most 
+    of the styling we need. Modify both selectors to include the following selector: '#paginateButtons button'
+2. The buttons have most of the styling needed, but there is too much padding and one button is larger than the other. We need to overwrite 
+    some of the CSS from the style rules utilized in step 1. Create a new selector directly below the selectors from step 1. Name the 
+    selector '#paginateButtons button'. Change the padding to '0.5%' for all sides and include a width of '8%'. The button should now match 
+    the Clear Cart buttons
+3. From a user-experience perspective, the buttons would better serve the user if they were on the right instead of the left. Create a new 
+    selector directly below the selector from step 2 that selects all elements with an id of paginateButtons. Use text-align to align the 
+    buttons to the right -->
+
+
+<!-- Task 4: Create the Paginate Function: It's now time to create the main function that will paginate the products. Here is an outline of what 
+    we will accomplish:
+a. See how many total products are in the products array
+b. Divide the products up between separate pages. For this assignment, we will place 6 products on each page
+    1b. The first 6 products inside the products array will display on the first page
+    2b. The next 6 products inside the products array will display on the second page
+    3b. Etc.
+    4b. Note: It's important to remember that arrays are indexed starting at zero, not one
+c. To break up the page, we will calculate which product inside the products array to start at and the which product to end with. This 
+    will be done for each page
+d. Once we determine the starting and ending product, we will move these products inside a temporary array and use the array to populate 
+    the products on each page
+e. All of the above will be accomplished inside a loop. The loop will start the above process over again for the next page. It will calculate 
+    a new start and end product and replace the products inside the temporary array with the next page's results. It then repeats this process 
+    until all the products are displayed on the separate pages
+
+Follow these directions to accomplish the outline above:
+1. Create a new function named 'paginate' directly below the variables you created in the previous task. The code for the rest of this task 
+    will go inside the function unless otherwise stated
+2. Next, we will create the product start and end variables. Remember, these determine which product to start with and which one to end with 
+    for each page
+    1a. We will calculate the end value first because we will use the end value to calculate the start value. The end value tells the browser 
+    when to stop displaying products on the page. It calculates this by multiplying the current page number by the number of products per page. 
+    For example, if we are on page 1 and we want to display 6 products per page, the result would be 1 X 6 = 6 and would display the first 6 
+    products on the page. Create a new variable named 'end' and assign it the value of currentPage multiplied by productsPerPage
+    2a. The start value is calculated by subtracting how many products you want displayed on the page (productsPerPage) from the last item 
+    displayed on the page (end). For example, the start value for the first page would subtract the number of products per page (6) from the 
+    end variable (6) which we calculated in the previous step. The result is zero (6 - 6 = 0). So, the first page would start at 0 in the 
+    products array and end after displaying the next 6 products. Create a new variable named 'start' and assign it the value of the 
+    productsPerPage subtracted from the end variable
+3. Each time we search the products array for results, we will take the products that we want to display on that page and place them inside 
+    the pagedResults temporary array. Each page will replace this array with the products that should be displayed on that page. For example, 
+    on page one the first 6 products will be stored inside the temporary array. On page two, the next 6 products will be stored inside the array. 
+    Directly below the start variable declaration, assign the pagedResults array to the following:
+     pagedResults = products.slice(start, end); 
+    This code uses the start and end variables to grab (slice) the needed products from the products array and places them inside the 
+    pagedResults temporary array
+4. Before we display the results on the page, it is a good idea to empty any information that currently might be on the page. Use jQuery to 
+    select the div with the id of cardContainer. Use the jQuery empty( ) method to remove anything that might be inside the cardContainer div
+5. Now we can loop through the temporary array and display the results to the page. Use the jQuery each( ) method to loop through the 
+    pagedResults array and apply a function. Provide the function two parameters: index, individualCard.
+6. Inside the function, use the append method with the jQuery #cardContainer selector to append the card information to the page. The card 
+    information is currently found between the backticks inside the innerHTML property of the addProducts( ) function
+    6a. Move all information currently between the backticks (Include the backticks. Do not include the innerHTML statement) inside the append method
+        6ai. When finished, either delete or comment-out the addProducts function as it is no longer needed
+7. Call the paginate function directly below the function declaration -->
+
+
+<!-- Task 5: Add the Button Click Events: The correct products can now display on the correct pages but we cannot navigate between the pages. 
+    We need to add a click event to both the next and previous buttons.
+
+NEXT BUTTON:
+1. Directly below the paginate( ) function call, use a jQuery selector to select the Next button and add a jQuery click event to it. Pass a 
+    function to the click event
+2. The Next button will help us navigate to the next page. However, we only want this to happen if there is another page to navigate to. 
+    Inside the the function, create an IF statement. Use the following for the condition of the IF statement:
+    (currentPage * productsPerPage) <= totalProducts
+    2a. Here's an explanation of the code:
+        2ai. currentPage * productsPerPage -> This calculates what the last product on the current page is
+        2bi. <= totalProducts ->  If the last product on the page is less than or equal to the total products in the products array
+3. We want to increase the current page if the above is true. Inside the IF statement, use the increment operator to increment the currentPage 
+    variable. (The currentPage variable keeps track of the page you are currently on)
+4. Each time the user presses the Next button, we need to run the paginate function to recalculate which items should be displayed on the page. 
+    Directly below the IF statement, create a function call to the paginate function
+5. We also need to add a call to the saveToLocalStorage function. Otherwise, the information will not be available from page to page. Make a 
+    call to the saveToLocalStorage function directly below the paginate function call
+
+PREVIOUS BUTTON:
+1. The Previous button will be coded almost exactly like the Next button. Directly below the Next button's click event, use a jQuery 
+    selector to select the Previous button and add a jQuery click event to it. Pass a function to the click event
+2. Calculating the Previous button is a lot easier. We simply need code that checks if the current page is greater than one. If it is, 
+    we will subtract 1 from the current page. Add the following code inside the function body of the click event:
+ if (currentPage > 1) {
+currentPage--;
+ }
+3. We also need to call the paginate and saveToLocalStorage functions. Do this below the IF statement -->
+
+
+<!-- Task 6: Disable Buttons on Necessary Pages: When the user is on the first page, the Previous button will not be able to be used since there 
+    isn't a previous page. Same with the last page, the Next button will not be able to be used because there aren't any more pages. Because 
+    of this, it would be important for us to disable the buttons when we don't want them to be available. How do we disable a button? If you 
+    add the 'disabled' attribute to the <button> tag, it will become disabled, like this: <button disabled>
+In jQuery, we can set the disabled property to 'true' to make the button disabled.
+
+1. Let's start with the code to disable the Previous button. Place this code inside the bottom of the paginate function so it will run each 
+    time we paginate the results. Create an IF statement with a condition that checks whether the current page is less than or equal to 1. 
+    We only want the Previous button to be disabled on the first page
+2. Inside the IF statement, use a jQuery selector to select the Previous button and attach the attr( ) method to set the 'disabled' property 
+    to 'true'
+3. If we aren't on the first page, we need the button to be enabled. Add an ELSE statement that uses the same jQuery selector to select the 
+    Previous button with the attr( ) method and set the 'disabled' property to 'false'. This will enable the button
+4. We can apply the same technique to the Next button. The difference is we need to know when we are on the last page instead of the first. 
+    Create a new IF / ELSE statement to disable the Next button. Use this code for the condition of the IF statement: 
+    (currentPage * productsPerPage) >= totalProducts
+    4a. Inside the IF statement, use a jQuery selector to select the Next button and use the jQuery attr( ) method to set the disabled attribute 
+        to 'true'
+    4b. Add an ELSE statement to reenable the button -->
+
+
+<!-- Task 7: Style the Disabled Buttons: The buttons have now been disabled but there is not an indication to the user that they are. Let's add 
+    a CSS style rule for when the buttons are disabled.
+
+1. We can use the disabled pseudo class to create CSS for a disabled button. Create a new style rule directly below the paginate rules. 
+    Use a descendant selector that selects any disabled button that resides within the #paginateButtons id
+2. Set the selector to have a border color of 'BBBBBB' and a text color of 'BBBBBB'. This will grey-out the button making it look disabled
+3. Also add a property to set the cursor to 'auto'. This will stop the mouse cursor from changing into a pointer finger -->
+
+
+
+
+
+
+
+
