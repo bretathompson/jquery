@@ -97,4 +97,13 @@ function displayOrderSummary() {
 }
 displayOrderSummary();
 
-
+$(document).ready(function(){
+    $('#checkoutThankYou').hide();
+    $('#checkoutButton').click(function() {
+        if (subtotal === 0) {
+            $('#checkoutThankYou').html('The cart is currently empty.').slideDown();
+        } else {
+            $('#checkoutThankYou').slideDown();
+        }
+    });
+});
