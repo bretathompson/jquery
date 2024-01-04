@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link href="style.css" rel="stylesheet">
+    <title>Cart - Kevin's Knick Knacks</title>
+    <script src="jquery-3.6.1.min"></script>
+</head>
+
+<body>
+
+    <header> 
+        <a href="index.html"><img src="images/KevinsKnickKnacksLogo_037DBE.png" alt="logo"></a>
+        <nav>
+            <div id="links">       
+                <a href="index.html">HOME</a>
+                <a href="shop.html">SHOP</a>
+                <a href="cart.html">CART</a>        
+            </div>
+        </nav>
+    </header>
+  
+
+  <main>
+    <aside>
+        <div id="sideBarHeading">
+            ORDER SUMMARY
+        </div>
+
+         <div id="sideBarContainer">
+        </div>
+        
+    <div id="cartButtons">
+        <button id="clearCartButton" type="button">Clear Cart</button>
+        <button id="checkoutButton" type="button">Checkout</button>
+    </div>
+        
+    </aside>
+
+    <div id="mainContentContainer">
+        <div id="cartCardContainer">
+        </div>
+    </div>
+
+
+  </main>
+
+  <footer>
+    <div id="socialMediaLinks">
+        <a href="#"><img src="images/facebook.png" alt="facebook"></a>
+        <a href="#"><img src="images/instagram.png" alt="instagram"></a>
+        <a href="#"><img src="images/twitter.png" alt="twitter"></a>
+        <a href="#"><img src="images/linkedin.png" alt="linkedIn"></a>
+    </div>
+
+    <div id="footerNav">
+        <a href="cart.html">CART</a>
+        <a href="shop.html">SHOP</a>
+        <a href="index.html">HOME</a>
+    </div>
+
+    <div id="copyright">
+        &copy; Otech Web Programming
+    </div>
+
+  </footer>
+
+    <script type="text/javascript" src="js/products.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/cart.js"></script>
+ 
+</body>
+
+</html>    
+
+
+
+<!-- Task 1: Create the HTML Thank You Message: Our goal is to create a thank you message that will display when the user clicks the Checkout button on 
+the cart.html page. In this task, we will create the thank you message in our HTML.
+1. The thank you message will display on the cart.html page after the Checkout button is clicked. Create a div with an id named 'checkoutThankYou' 
+    directly below the cartButtons div
+2. Inside the checkoutThankYou div, add the text 'Thank you for your order!! Your order is being processed. Check your email for updates.'
+3. We want the Thank you for your order!! part of our text to stand out. Surround the text with span tags and apply the class of 'bold'
+4. Add two break tags after the closing </span> tag to add some separation between the thank you and the rest of the text
+5. Let's add a little CSS to help add a little breathing room between the text and the border of the box. At the bottom of the style.css page, 
+    create a new selector for an id named 'checkoutThankYou'. Add a padding of '10px' on all sides. -->
+
+
+
+    <div id="checkoutThankYou">
+        <span class="bold">Thank you for your order!!</span><br><br>
+        Your order is being processed. Check your email for updates.
+    </div>
+    
