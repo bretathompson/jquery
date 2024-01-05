@@ -11,43 +11,7 @@
 
     <script>
         $(function() {
-            $('#frozen').hover(function() {
-                $(this).fadeOut('slow').fadeIn('fast');
-            });
-    
-            $('nav a').hover(function() {
-                    $(this).animate({fontSize: '80%'}); 
-                }, function() {
-                    $(this).animate({fontSize: '100%'});
-            });
-
-            $('#fruity').click(function() {
-                $(this).slideUp('slow', function() {
-                    $('#fruityCaption').text("All gone!").css('cursor', 'pointer');
-                });
-            });
-
-            $('#fruityCaption').click(function() {
-                $('#fruity').slideDown('slow', function() {
-                    $('#fruityCaption').text("Fruity Flavors").css('cursor', 'default');
-                });
-            });
-
-            $('#icecream').click(function() {
-                $('#definition').slideToggle();
-            });
-    
-            $('#logo').hover(function() {
-                $(this).animate({left: '80%', opacity: 0}, 'slow');
-            },function() {
-                $(this).animate({left: '0%', opacity: 1}, 'slow');
-            });    
             
-            $('#compositionButton').click(function(){
-                $('#compositionDescription').load('IceCreamInfo.html #composition');
-            });
-
-    
         });
     </script>
 </head>
@@ -90,3 +54,145 @@
     </footer>
 </body>
 </html>
+
+
+<script>
+    $(function() {
+        $('#frozen').hover(function() {
+            $(this).fadeOut('slow').fadeIn('fast');
+        });
+
+        $('nav a').hover(function() {
+                $(this).animate({fontSize: '80%'}); 
+            }, function() {
+                $(this).animate({fontSize: '100%'});
+        });
+
+        $('#fruity').click(function() {
+            $(this).animate({left: '150%'}, 500, function() {
+                $('#fruityCaption').text("All gone!").css('cursor', 'pointer');
+            });
+        }); 
+        
+        $('#fruityCaption').click(function() {
+            $('#fruity').animate({ left: '0%' }, 500, function() {
+                $('#fruityCaption').text("Fruity Flavors").css('cursor', 'default');
+            });
+        });
+        
+        $('#icecream').click(function() {
+            $('#definition').slideToggle();
+        });
+
+    });
+</script>
+
+
+
+<!-- 
+TASK 5: Animate the header logo image (the image of the dogs with ice cream):
+A. When the mouse is over the image (mouseover):
+    A1. The image will move from it's current location to a new location directly to the right of the original
+       I. Move the image 80% across the page
+    A2. The image will fade until it completely disappears when it reaches the location on the right
+    A3. The movement and fade will occur simultaneously
+B. When the mouse leaves the image (mouseout):
+    B1. The image will return to it's original location (on the left)
+    B2. The image will return to 100% opaque
+    B3. The movement and fade will occur simultaneously
+
+TASK 6: Import selected information from the IceCreamInfo.html page into the A4-1.html page using the AJAX load( ) method
+A. The following two ids have been created for you:
+    A1. compositionButton
+    A2. compositionDescription
+B. When the user clicks the compositionButton button (A4-1.html):
+    B1. The paragraph with the id of "composition" (IceCreamInfo.html) will be appended to the A4-1.html page
+        Bi. Append the information in the paragraph with the id of "compositionDescription" -->
+
+        <script>
+            $(document).ready(function() {
+        
+                // TASK 1: Hover event for FrozenFruit.jpg
+                $('#frozen').hover(
+                    function() {
+                        $(this).fadeOut(300).fadeIn(300);
+                    }
+                );
+        
+                // TASK 2: Animate navigation links
+                $('nav a').hover(
+                    function() {
+                        $(this).animate({ fontSize: '80%' }, 200);
+                    },
+                    function() {
+                        $(this).animate({ fontSize: '100%' }, 200);
+                    }
+                );
+        
+                // TASK 3: Click event for FruityIceCream.jpg
+                $('#fruity').click(function() {
+                    $(this).animate({ left: '150%' }, 500, function() {
+                        $('#fruityCaption').text('All gone!').css('cursor', 'pointer');
+                    });
+                });
+        
+                // Click event for "All gone!"        
+                $('#fruityCaption').click(function() {
+                    $('#fruity').animate({ left: '0%' }, 500, function() {
+                    $('#fruityCaption').text("Fruity Flavors").css('cursor', 'pointer');
+                    });
+                });
+
+
+                // TASK 4: Click event for "What is Ice Cream" button
+                $('#icecream').click(function() {
+                    $('#definition').slideToggle();
+                });
+        
+                // TASK 5: Animate header logo image
+                $('#logo').hover(
+                    function() {
+                        $(this).animate({ left: '80%', opacity: '0' }, 500);
+                    },
+                    function() {
+                        $(this).animate({ left: '0', opacity: '1' }, 500);
+                    }
+                );
+        
+                // TASK 6: AJAX load() method
+                $('#compositionButton').click(function() {
+                    $('#compositionDescription').load('IceCreamInfo.html #composition');
+                });
+        
+            });
+        </script>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

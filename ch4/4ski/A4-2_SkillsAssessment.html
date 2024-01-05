@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorri Lang Photography</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.7.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <a href="A4-2_SkillsAssessment.html"><img src="images/lorrilang_photography.PNG" alt="Lorri Lang Photograph"></a>
+        <nav>
+            <a href="A4-2_SkillsAssessment.html">Home</a>
+            <a href="#">Gallery</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <div class="flexRow">
+            <img src="images/winter.jpg" alt="Model in winter" id="winter">
+            <img src="images/redDress.jpg" alt="Model in a red dress" id="redDress">
+            <img src="images/countryGuitar_Smile.jpg" alt="Model playing a guitar" id="guitar">
+        </div>
+        <div class="flexRow">
+            <img src="images/hatAndMittens.jpg" alt="Model with hat and mittens" id="mittens">
+            <img src="images/blowingSnow.jpg" alt="Model blowing snow" id="blowingSnow">
+            <img src="images/iceSkates.jpg" alt="Child model with ice skates" id="skates">
+        </div>
+    </main>
+    <footer>
+        <a href="https://www.facebook.com/momentintimephotographybylorri/" target="_blank"><img src="images/Facebook_Logo.png" alt="Facebook Logo"></a>
+        <p>&copy; Lorri Lang Photography</p>
+    </footer>
+
+    <script>
+        $(function() {
+             /* Use jQuery to accomplish the following: */            
+            /* 1. Use jQuery to attach a hover event to the 'winter' image. When the image is hovered over add a slide toggle that
+                will make the image shrink and then enlarge. */
+                    $('#winter').hover(function() {
+                        $(this).slideToggle('slow');
+                    });
+
+            /* 2. Use jQuery to attach a hover event to the 'redDress' image. When the image is hovered over the image will fade out and
+                then immediately fade back in. */
+                    $('#redDress').hover(function() {
+                        $(this).fadeOut().fadeIn();
+                    });                 
+
+            /* 3. Use a jQuery click event on the 'guitar' image. When the user clicks the image it will fade out until it disappears. */
+                    $('#guitar').click(function() {
+                        $(this).fadeOut();
+                    });
+
+            /* 4. Use a jQuery click event on the 'mittens' image. When the user clicks the image it will slide up until it disappears. */
+                    $('#mittens').click(function() {
+                        $(this).slideUp();
+                    });
+
+            /* 5. Use jQuery events to do the following to the 'blowingSnow' image:
+                - When the mouse is over the image, use the css() method to change the width of the image to '670px'
+                - When the mouse leaves the image, use the css() method to return the width of the image to the original '640px' */
+                    $('#blowingSnow').on({
+                        mouseover: function() {
+                            $(this).css('width', '670px');
+                        }, mouseleave: function() {
+                            $(this).css('width', '640px')
+                        }
+                    }); 
+
+            /* 6. Use the jQuery hover event on the 'skates' image. When the image is hovered over, use jQuery to make the
+                background color of the entire page change to the color of '82A1AF' */
+                    $('#skates').hover(function() {
+                        $('body').css('background-color', '#82A1AF');
+                    });
+
+            /* 7. Use jQuery events to do the following to all the links on the page:
+                - When the mouse is over the link, use the animate() method to change the font size to 80% of the current size
+                - When the mouse leaves the image, use the animate() method to return the font size to the original '20px' */
+                    $('a').hover(function () {
+                        $(this).animate({fontSize: '80%' });
+                    }, function () {
+                        $(this).animate({fontSize: '20px' });
+                    });
+
+        });
+            
+    </script>
+</body>
+</html>
+
+
+
