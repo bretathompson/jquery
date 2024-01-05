@@ -265,23 +265,19 @@ footer {
     right: 5.35%;
 }
 
+#checkoutThankYou {
+    padding: 10px;
+}
+
 #paginateButtons button {
-    padding: 0.5%;
-    width: 8%;
     background-color: #3498db;
     color: #fff;
     border: none;
+    padding: 0.5%;
+    width: 8%;
     cursor: pointer;
 }
 
-#paginateButtons {
+#paginateButtons .previous {
     text-align: right;
 }
-
-#paginateButtons button:disabled {
-    border-color: #BBBBBB;
-    color: #BBBBBB;
-    cursor: auto;
-}
-
-

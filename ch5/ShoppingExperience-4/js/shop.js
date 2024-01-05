@@ -46,6 +46,30 @@ function paginate() {
             </div>`
         );
     });
+}
+
+paginate();
+
+function paginate() {
+    let end = currentPage * productsPerPage;
+    let start = end - productsPerPage;
+
+    pagedResults = products.slice(start, end);
+
+    $('#cardContainer').empty();
+    $.each(pagedResults, function (index, individualCard) {
+        $('#cardContainer').append(`
+            <div class="card" id="cardNumber${individualCard.id}">
+                <img src="${individualCard.image}" alt="${individualCard.description}">
+                <div class="cardText">
+                    <h4>${individualCard.name}</h4>
+                    <p>${individualCard.description}</p>
+                    <p>&dollar; ${individualCard.price}</p>
+                    <button class="cartButton" id="${individualCard.id}" type="button">Add to Cart</button>
+                </div>
+            </div>`
+        );
+    });
 
     if (currentPage <= 1) {
         $('#prevButton').attr('disabled', true);
@@ -61,47 +85,6 @@ function paginate() {
 }
 
 paginate();
-saveToLocalStorage();
-
-
-$('#nextButton').click(function() {
-    if ((currentPage * productsPerPage) <= totalProducts) {
-        currentPage++;
-    }
-    paginate();
-    saveToLocalStorage();
-});
-
-$('#prevButton').click(function() {
-    if (currentPage > 1) {
-        currentPage--;
-    }
-    paginate();
-    saveToLocalStorage();
-});
-
-function saveToLocalStorage() {
-    let cartButton = document.getElementsByClassName("cartButton");
-
-    for (let i = 0; i < cartButton.length; i++) {
-        let addButton = cartButton[i];
-
-        addButton.addEventListener("click", function(event) {
-            event.preventDefault();
-
-            let cartItemSearch = cart.find((cartItem) => cartItem.id == selectedProduct.id);
-            if (cartItemSearch) {
-                cartItemSearch.quantity++;
-            } else{
-                cart.push({selectedProduct, quantity: 1 });
-            };
-
-            localStorage.setItem("CART", JSON.stringify(cart));
-
-            displayCart();
-        });
-    }
-}
 saveToLocalStorage();
 
 
@@ -139,6 +122,10 @@ const checkoutButton = document.getElementById('checkoutButton');
 checkoutButton.addEventListener('click', () => {
     window.location.href = 'cart.html';
 });
+
+
+
+
 
 
 

@@ -259,29 +259,3 @@ footer {
     margin: 0;
 }
 
-.sticky {
-    position: fixed;
-    top: 8px;
-    right: 5.35%;
-}
-
-#paginateButtons button {
-    padding: 0.5%;
-    width: 8%;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-#paginateButtons {
-    text-align: right;
-}
-
-#paginateButtons button:disabled {
-    border-color: #BBBBBB;
-    color: #BBBBBB;
-    cursor: auto;
-}
-
-
