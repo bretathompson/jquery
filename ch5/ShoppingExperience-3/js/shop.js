@@ -1,38 +1,12 @@
+
+
 const cardContainer = document.querySelector('#cardContainer');
 function addProducts() {
     let cardInfo = '';
     
 
     products.forEach((individualCard) => {
-    //   cardInfo += `
-    //         <div class="card" id="cardNumber${individualCard.id}">
-    //             <img src="${individualCard.image}" alt="${individualCard.description}">
-    //             <div class="cardText">
-    //                 <h4>${individualCard.name}</h4>
-    //                 <p>${individualCard.description}</p>
-    //                 <p>&dollar; ${individualCard.price}</p>
-    //                 <button class="cartButton" id="${individualCard.id}" type="button">Add to Cart</button>
-    //             </div>
-    //         </div>`;
-    });
-    cardContainer.innerHTML = cardInfo;
-}
-// addProducts();
-
-let productsPerPage = 6;
-let currentPage = 1;
-let pagedResults = [];
-let totalProducts = products.length;
-
-function paginate() {
-    let end = currentPage * productsPerPage;
-    let start = end - productsPerPage;
-
-    pagedResults = products.slice(start, end);
-
-    $('#cardContainer').empty();
-    $.each(pagedResults, function (index, individualCard) {
-        $('#cardContainer').append(`
+      cardInfo += `
             <div class="card" id="cardNumber${individualCard.id}">
                 <img src="${individualCard.image}" alt="${individualCard.description}">
                 <div class="cardText">
@@ -41,44 +15,12 @@ function paginate() {
                     <p>&dollar; ${individualCard.price}</p>
                     <button class="cartButton" id="${individualCard.id}" type="button">Add to Cart</button>
                 </div>
-            </div>`
-        );
+            </div>`;
     });
-
-    if (currentPage <= 1) {
-        $('#prevButton').attr('disabled', true);
-    } else {
-        $('#prevButton').attr('disabled', false);
-    }
-
-    if ((currentPage * productsPerPage) >= totalProducts) {
-        $('#nextButton').attr('disabled', true);
-    } else {
-        $('#nextButton').attr('disabled', true);
-    }
+    cardContainer.innerHTML = cardInfo;
 }
+addProducts();
 
-paginate();
-saveToLocalStorage();
-
-
-$('#nextButton').click(function() {
-    if ((currentPage * productsPerPage) <= totalProducts) {
-        currentPage++;
-    }
-    paginate();
-    saveToLocalStorage();
-    fadeButtons();
-});
-
-$('#prevButton').click(function() {
-    if (currentPage > 1) {
-        currentPage--;
-    }
-    paginate();
-    saveToLocalStorage();
-    fadeButtons();
-});
 
 function saveToLocalStorage() {
     let cartButton = document.getElementsByClassName("cartButton");
@@ -139,4 +81,6 @@ const checkoutButton = document.getElementById('checkoutButton');
 checkoutButton.addEventListener('click', () => {
     window.location.href = 'cart.html';
 });
+
+
 
